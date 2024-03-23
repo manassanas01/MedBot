@@ -9,10 +9,12 @@ const colors = {
     black: '#000000',
     white: '#FFFFFF',
     grey: '#cccccc',
+    lightgrey: '#EFEFEF',
     blue: '#08A0F8',
     green: '#E7F5FB',
     black: '#1C1C1C',
-    whitesmoke: '#F5F5F5'
+    whitesmoke: '#F5F5F5',
+    Royal_Blue: '#015EE9'
 }
 
 const fonts = {
@@ -21,7 +23,8 @@ const fonts = {
     Nunito_SemiBold: 'Nunito-SemiBold',
     Nunito_Bold: 'Nunito-Bold',
     Inter_Regular: 'Inter-Regular',
-    Inter_Bold: 'Inter-Bold'
+    Inter_Bold: 'Inter-Bold',
+    Inter_Medium: 'Inter-Medium'
 }
 
 const url = 'https://firestore.googleapis.com/v1/'

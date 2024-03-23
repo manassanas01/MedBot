@@ -11,7 +11,6 @@ import {
     View,
     useColorScheme
 } from 'react-native';
-import { TouchableRipple } from 'react-native-paper';
 import Snackbar from 'react-native-snackbar';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import tw from 'tailwind-react-native-classnames';
@@ -34,7 +33,7 @@ const Login = ({ navigation }) => {
         setisLoading(true);
         GoogleSignin.configure({
             webClientId: '440064675261-091lsp0m00fg75llat81efc8b5354q8b.apps.googleusercontent.com',
-          });
+        });
         // Get the users ID token
         //const { idToken } = await GoogleSignin.signIn();
         const data = await GoogleSignin.signIn();
@@ -90,86 +89,72 @@ const Login = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView style={[isDarkMode ? { backgroundColor: colors.dark } : { backgroundColor: colors.white }, tw`p-6 h-full`]}>
-            {Platform.OS === 'android' ?
-                <TouchableRipple
-                    style={[tw`self-start my-4 px-1.5 py-4 rounded-2xl`, isDarkMode ? { backgroundColor: colors.dark_2 } : { backgroundColor: colors.primary }]}
-                    rippleColor="rgba(0, 0, 0, .32)"
-                    onPress={() => navigation.goBack()}>
-                    <Icon
-                        name="angle-left-solid"
-                        size={20}
-                        color={colors.white}
-                        style={tw`mx-3.5`}
-                    />
-                </TouchableRipple>
-                :
-                <TouchableOpacity
-                    style={[tw`self-start my-4 px-1.5 py-4 rounded-2xl`, isDarkMode ? { backgroundColor: colors.dark_2 } : { backgroundColor: colors.primary }]}
-                    onPress={() => navigation.goBack()}>
-                    <Icon
-                        name="angle-left-solid"
-                        size={20}
-                        color={colors.white}
-                        style={tw`mx-3.5`}
-                    />
-                </TouchableOpacity>
-            }
-            <Text style={[tw`my-1`, {
-                fontFamily: fonts.Nunito_SemiBold,
-                fontSize: 36,
-            }, isDarkMode ? { color: colors.white } : { color: colors.primary }]}>Notes 101</Text>
+        <SafeAreaView style={[{ backgroundColor: colors.lightgrey }, tw`m-1 p-6 h-full`]}>
+            <TouchableOpacity
+                style={[
+                    tw`self-start my-4 px-1.5 py-4 rounded-2xl`,
+                    { borderColor: colors.whitesmoke, borderWidth: 2, backgroundColor: colors.black }]}
+                onPress={() => navigation.goBack()}>
+                <Icon
+                    name="angle-left-solid"
+                    size={20}
+                    color={colors.white}
+                    style={tw`mx-3.5`}
+                />
+            </TouchableOpacity>
+            <Text style={[tw`mb-1 mt-8`, {
+                fontFamily: fonts.Inter_Medium,
+                fontSize: 24,
+            }, { color: colors.black }]}>Sign In</Text>
             <View style={tw`py-2`}>
                 <View style={tw`py-4`}>
-                    <Text style={[tw`text-sm font-medium`, isDarkMode ? tw`text-white` : tw`text-gray-700`]}>Email</Text>
+                    <Text style={[tw`text-sm font-medium ml-2`, tw`text-gray-700`]}>Email</Text>
                     <TextInput
-                        style={tw`my-1 text-base p-2 w-full border-2 border-gray-300 rounded-md`}
+                        style={[tw`my-1 text-base p-2 w-full border-gray-300 rounded-md`,
+                        { borderWidth: 0, borderBottomWidth: 2, color: colors.black }
+                        ]}
                         keyboardType='email-address'
-                        placeholder='john.doe@example.com'
                         onChangeText={text => setemail(text)}
                     />
                 </View>
                 <View style={tw`py-4`}>
-                    <Text style={[tw`text-sm font-medium text-gray-700`, isDarkMode ? tw`text-white` : tw`text-gray-700`]}>Password</Text>
+                    <Text style={[tw`text-sm font-medium  ml-2`, tw`text-gray-700`]}>Password</Text>
                     <TextInput
-                        style={tw`my-1 p-2 w-full text-base border-2 border-gray-300 rounded-md`}
+                        style={[tw`my-1 text-base p-2 w-full border-gray-300 rounded-md`,
+                        { borderWidth: 0, borderBottomWidth: 2, color: colors.black }
+                        ]}
                         secureTextEntry={true}
                         onChangeText={text => setpassword(text)}
                     />
                 </View>
             </View>
-            {Platform.OS === 'android' ?
-                <TouchableRipple
-                    rippleColor="rgba(0, 0, 0, .32)"
-                    onPress={() => login(email, password)}
-                    style={[tw`my-4 py-3 rounded-md`, isDarkMode ? { backgroundColor: colors.dark_2 } : { backgroundColor: colors.primary }]}>
-                    {isLoading ?
-                        <ActivityIndicator size="small" color={colors.white} />
-                        :
-                        <Text style={[tw`text-base text-white self-center`, { fontFamily: fonts.Nunito_Regular }]}>Sign In</Text>
-                    }
-                </TouchableRipple>
-                :
-                <TouchableOpacity
-                    rippleColor="rgba(0, 0, 0, .32)"
-                    onPress={() => login(email, password)}
-                    style={[tw`my-4 py-3 rounded-md`, isDarkMode ? { backgroundColor: colors.dark_2 } : { backgroundColor: colors.primary }]}>
-                    {isLoading ?
-                        <ActivityIndicator size="small" color={colors.white} />
-                        :
-                        <Text style={[tw`text-base text-white self-center`, { fontFamily: fonts.Nunito_Regular }]}>Sign In</Text>
-                    }
-                </TouchableOpacity>
-            }
-            <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 12, alignSelf: 'center' }}>
-                <Text style={[tw`text-sm`, { fontFamily: fonts.Nunito_Regular }, isDarkMode ? { color: colors.white } : { color: colors.dark }]}>Don’t have an Account? </Text>
-                <TouchableOpacity><Text style={[tw`text-sm`, { fontFamily: fonts.Nunito_Regular }, isDarkMode ? { color: colors.white } : { color: colors.primary }]}>Sign Up</Text></TouchableOpacity>
+            {/* Sign In Button */}
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Login')}
+                style={[{
+                    backgroundColor: '#1c1c1c',
+                    borderRadius: 36,
+                    paddingHorizontal: 48,
+                    paddingVertical: 16,
+                    justifyContent: 'center',
+                    marginLeft: 'auto'
+                }, isDarkMode ? { backgroundColor: colors.Royal_Blue } : { backgroundColor: '#ffffff', borderWidth: 1, borderColor: '#cccccc' }]}>
+                <Text style={[{
+                    fontFamily: 'Inter_Regular',
+                    color: '#f5f5f5',
+                    fontSize: 16,
+                }, isDarkMode ? { color: '#f5f5f5' } : { color: '#000000' }]}>Sign In</Text>
+            </TouchableOpacity>
+
+            <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 28, alignSelf: 'center' }}>
+                <Text style={[tw`text-sm`, { fontFamily: fonts.Nunito_Regular }, { color: colors.dark }]}>Don’t have an Account? </Text>
+                <TouchableOpacity><Text style={[tw`text-sm`, { fontFamily: fonts.Nunito_Regular }, { color: colors.primary }]}>Sign Up</Text></TouchableOpacity>
             </View>
             <View style={{
                 alignItems: 'center',
                 marginTop: 12
             }}>
-                <TouchableOpacity><Text style={[tw`text-sm`, { fontFamily: fonts.Nunito_Regular }, isDarkMode ? { color: colors.white } : { color: colors.primary }]}>Forgot Password?</Text></TouchableOpacity>
+                <TouchableOpacity><Text style={[tw`text-sm`, { fontFamily: fonts.Nunito_Regular }, { color: colors.primary }]}>Forgot Password?</Text></TouchableOpacity>
             </View>
             <View style={tw`my-4`}>
                 <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
@@ -181,7 +166,7 @@ const Login = ({ navigation }) => {
                             width: '40%'
                         }}
                     />
-                    <Text style={[{ fontFamily: fonts.Poppins_Regular, fontSize: 14 }, isDarkMode ? { color: colors.white } : { color: colors.dark }]}>OR</Text>
+                    <Text style={[{ fontFamily: fonts.Poppins_Regular, fontSize: 14 }, { color: colors.dark }]}>OR</Text>
                     <View
                         style={{
                             borderBottomColor: colors.grey,
@@ -193,40 +178,21 @@ const Login = ({ navigation }) => {
                 </View>
             </View>
             <View>
-                {Platform.OS === 'android' ?
-                    <TouchableRipple
-                        rippleColor="rgba(0, 0, 0, .32)"
-                        onPress={() => google_auth()}
-                        style={[tw`my-4 py-2.5 rounded-md`, isDarkMode ? { backgroundColor: colors.dark_2 } : { backgroundColor: colors.white, borderWidth: 1, borderColor: '#cccccc' }]}>
-                        <View style={tw`self-center`}>
-                            {isLoading ?
-                                <ActivityIndicator size="small" color={ isDarkMode ? colors.white : colors.primary } />
-                                :
-                                <View style={{ flexDirection: 'row' }}>
-                                    <Image source={require('../assets/images/Google-icon/icon_google.png')} style={{ width: 24, resizeMode: 'contain', alignSelf: 'center' }} />
-                                    <Text style={[tw`ml-2 text-base text-white self-center`, { fontFamily: fonts.Nunito_Regular }, isDarkMode ? tw`text-white`: tw`text-black`]}>Google</Text>
-                                </View>
-                            }
-                        </View>
-                    </TouchableRipple>
-                    :
-                    <TouchableOpacity
-                        onPress={() => google_auth()}
-                        style={[tw`my-4 py-3 rounded-md`, isDarkMode ? { backgroundColor: colors.dark_2 } : { backgroundColor: colors.white, borderWidth: 1, borderColor: '#cccccc' }]}>
-                        <View style={tw`self-center`}>
-                            {isLoading ?
-                                <ActivityIndicator size="small" color={ isDarkMode ? colors.white : colors.primary } />
-                                :
-                                <View style={{ flexDirection: 'row' }}>
-                                    <Image source={require('../assets/images/Google-icon/icon_google.png')} style={{ width: 24, resizeMode: 'contain', alignSelf: 'center' }} />
-                                    <Text style={[tw`ml-2 text-base text-white self-center`, { fontFamily: fonts.Inter_Regular }, isDarkMode ? tw`text-white`: tw`text-black`]}>Google</Text>
-                                </View>
-                            }
-                        </View>
-                    </TouchableOpacity>
-                }
+                <TouchableOpacity
+                    onPress={() => google_auth()}
+                    style={[tw`my-4 py-3`, { backgroundColor: colors.black, borderRadius: 36 }]}>
+                    <View style={tw`self-center`}>
+                        {isLoading ?
+                            <ActivityIndicator size="small" color={ colors.Royal_Blue } />
+                            :
+                            <View style={{ flexDirection: 'row' }}>
+                                <Image source={require('../assets/images/Google-icon/icon_google.png')} style={{ width: 24, resizeMode: 'contain', alignSelf: 'center' }} />
+                                <Text style={[tw`ml-2 text-base text-white self-center`, { fontFamily: fonts.Inter_Regular }, tw`text-white`]}>Google</Text>
+                            </View>
+                        }
+                    </View>
+                </TouchableOpacity>
             </View>
-            
         </SafeAreaView>
     )
 }

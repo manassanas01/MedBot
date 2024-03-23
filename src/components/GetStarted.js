@@ -1,7 +1,6 @@
 import React from 'react';
 import { Image, SafeAreaView, Text, useColorScheme, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { TouchableRipple } from 'react-native-paper';
 import tw from 'tailwind-react-native-classnames';
 import { colors, fonts } from './base/theme';
 
@@ -33,25 +32,6 @@ const GetStarted = ({ navigation }) => {
                 <View>
                     {/* Get Started Buttons */}
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 18 }}>
-                        {Platform.OS === 'android' ?
-                            <TouchableRipple
-                                onPress={() => navigation.navigate('Login')}
-                                rippleColor="rgba(0, 0, 0, .32)"
-                                style={[{
-                                    backgroundColor: '#1c1c1c',
-                                    height: 56,
-                                    borderRadius: 36,
-                                    paddingHorizontal: 48,
-                                    justifyContent: 'center',
-                                    marginRight: 8
-                                }, isDarkMode ? { backgroundColor: '#1c1c1c' } : { backgroundColor: '#ffffff', borderWidth: 1, borderColor: '#cccccc' }]}>
-                                <Text style={[{
-                                    fontFamily: 'Inter_Regular',
-                                    color: '#f5f5f5',
-                                    fontSize: 16,
-                                }, isDarkMode ? { color: '#f5f5f5' } : { color: '#000000' }]}>Sign In</Text>
-                            </TouchableRipple>
-                            :
                             <TouchableOpacity
                                 onPress={() => navigation.navigate('Login')}
                                 style={[{
@@ -68,26 +48,6 @@ const GetStarted = ({ navigation }) => {
                                     fontSize: 16,
                                 }, isDarkMode ? { color: '#f5f5f5' } : { color: '#000000' }]}>Sign In</Text>
                             </TouchableOpacity>
-                        }
-                        {Platform.OS === 'android' ?
-                            <TouchableRipple
-                                onPress={() => { }}
-                                rippleColor="rgba(0, 0, 0, .32)"
-                                style={[{
-                                    backgroundColor: '#1c1c1c',
-                                    height: 56,
-                                    borderRadius: 36,
-                                    paddingHorizontal: 48,
-                                    justifyContent: 'center',
-                                    marginLeft: 8
-                                }, isDarkMode ? { backgroundColor: '#1c1c1c' } : { backgroundColor: '#ffffff', borderWidth: 1, borderColor: '#cccccc' }]}>
-                                <Text style={[{
-                                    fontFamily: 'Inter_Regular',
-                                    color: '#f5f5f5',
-                                    fontSize: 16,
-                                }, isDarkMode ? { color: '#f5f5f5' } : { color: '#000000' }]}>Sign Up</Text>
-                            </TouchableRipple>
-                            :
                             <TouchableOpacity
                                 onPress={() => { }}
                                 style={[{
@@ -104,7 +64,6 @@ const GetStarted = ({ navigation }) => {
                                     fontSize: 16,
                                 }, isDarkMode ? { color: '#f5f5f5' } : { color: '#000000' }]}>Sign Up</Text>
                             </TouchableOpacity>
-                        }
                     </View>
                 </View>
             </View>
