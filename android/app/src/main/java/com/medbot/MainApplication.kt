@@ -12,6 +12,11 @@ import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.react.flipper.ReactNativeFlipper
 import com.facebook.soloader.SoLoader
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.graphics.Color;
+import android.os.Build;
+
 class MainApplication : Application(), ReactApplication {
 
   override val reactNativeHost: ReactNativeHost =
@@ -32,6 +37,31 @@ class MainApplication : Application(), ReactApplication {
 
   override val reactHost: ReactHost
     get() = getDefaultReactHost(this.applicationContext, reactNativeHost)
+  
+    private fun createNotificationChannel() {
+      val notificationChannelID = getString(R.string.primary_notification_channel_id)
+      
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+          val name: CharSequence = getString(R.string.primary_notification_channel_name)
+          val description: String = getString(R.string.primary_notification_channel_desc)
+          val importance: Int = NotificationManager.IMPORTANCE_HIGH
+          val channel = NotificationChannel(notificationChannelID, name, importance)
+          
+          // Set channel description directly when initializing the channel
+          channel.description = description
+          
+          // Set channel color properly (alpha value between 0 and 255)
+          channel.lightColor = Color.argb(255, 74, 71, 167)
+          
+          // Set vibration pattern if needed
+          channel.enableVibration(true)
+          channel.vibrationPattern = longArrayOf(400, 400)
+          
+          val notificationManager = getSystemService(NotificationManager::class.java)
+          notificationManager.createNotificationChannel(channel)
+      }
+  }
+  
 
   override fun onCreate() {
     super.onCreate()

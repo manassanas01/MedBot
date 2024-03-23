@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MedBot</string>
+    <string name="default_notification_channel_id">fcm_fallback_notification_channel</string>
+    <string name="primary_notification_channel_id">default_notification_channel</string>
+    <string name="primary_notification_channel_name">MedBot Default</string>
+    <string name="primary_notification_channel_desc">MedBot Default</string>
 </resources>

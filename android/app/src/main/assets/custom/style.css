@@ -1,0 +1,81 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?2dbik5');
+  src:  url('fonts/icomoon.eot?2dbik5#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?2dbik5') format('truetype'),
+    url('fonts/icomoon.woff?2dbik5') format('woff'),
+    url('fonts/icomoon.svg?2dbik5#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-circle-info-solid:before {
+  content: "\e901";
+}
+.icon-user-solid:before {
+  content: "\e900";
+}
+.icon-angle-down-solid:before {
+  content: "\e903";
+}
+.icon-angle-right-solid:before {
+  content: "\e904";
+}
+.icon-angles-right-solid:before {
+  content: "\e905";
+}
+.icon-angle-up-solid:before {
+  content: "\e906";
+}
+.icon-floppy-disk-solid:before {
+  content: "\e907";
+}
+.icon-magnifying-glass-solid:before {
+  content: "\e908";
+}
+.icon-pencil-solid:before {
+  content: "\e909";
+}
+.icon-plus-solid:before {
+  content: "\e90a";
+}
+.icon-trash-solid:before {
+  content: "\e90b";
+}
+.icon-angle-left-solid:before {
+  content: "\e90c";
+}
+.icon-eye-solid:before {
+  content: "\e90d";
+}
+.icon-hammer-solid:before {
+  content: "\e90e";
+}
+.icon-right-from-bracket-solid:before {
+  content: "\e90f";
+}
+.icon-bars-solid:before {
+  content: "\e910";
+}
+.icon-circle-question-solid:before {
+  content: "\e911";
+}
+.icon-tag-solid:before {
+  content: "\e912";
+}
