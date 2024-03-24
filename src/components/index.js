@@ -13,7 +13,7 @@ import { colors } from './base/theme';
 import RemotePushController from './services/RemotePushController';
 
 import GetStarted from './GetStarted';
-import DrawerNav from './Home';
+import Home from './Home';
 import Login from './Login';
 
 const AuthStack = createStackNavigator();
@@ -45,9 +45,8 @@ const App = () => {
     }
 
     React.useEffect(() => {
-        //const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-        //return subscriber; // unsubscribe on unmount
-        console.log(user)
+        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+        return subscriber; // unsubscribe on unmount
     }, []);
 
     if (initializing) {
@@ -76,7 +75,7 @@ const App = () => {
                         >
                             <Stack.Screen
                                 name="Home"
-                                children={DrawerNav}
+                                children={Home}
                             />
                         </Stack.Navigator>
                     ) : (

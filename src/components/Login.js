@@ -130,7 +130,7 @@ const Login = ({ navigation }) => {
             </View>
             {/* Sign In Button */}
             <TouchableOpacity
-                onPress={() => navigation.navigate('Login')}
+                onPress={() => login(email, password)}
                 style={[{
                     backgroundColor: '#1c1c1c',
                     borderRadius: 36,
