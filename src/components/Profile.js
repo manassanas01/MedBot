@@ -14,33 +14,11 @@ import Snackbar from 'react-native-snackbar';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import tw from 'tailwind-react-native-classnames';
 import icomoonConfig from '../assets/fonts/icomoon/selection.json';
+import { CustomButton } from './base/CustomButton';
 import { AuthContext } from './base/context';
 import { colors, fonts } from './base/theme';
 
 const Icon = createIconSetFromIcoMoon(icomoonConfig);
-
-const CustomButton = ({ onPress, text, backgroundColor, textcolor }) => (
-    <TouchableOpacity
-        onPress={onPress}
-        style={{
-            backgroundColor: backgroundColor,
-            borderRadius: 36,
-            paddingVertical: 13,
-            width: 145,
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderWidth: 2.5,
-            borderColor: colors.white
-        }}>
-        <Text style={{
-            fontFamily: 'Inter_Regular',
-            color: textcolor,
-            fontSize: 16,
-            marginLeft: 6,
-        }}>{text}</Text>
-    </TouchableOpacity>
-);
 
 const Profile = ({ navigation }) => {
     const [isLoading, setisLoading] = React.useState(true);

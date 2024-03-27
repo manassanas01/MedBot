@@ -5,124 +5,10 @@ import { Text } from 'react-native-paper';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import tw from 'tailwind-react-native-classnames';
 import icomoonConfig from '../assets/fonts/icomoon/selection.json';
+import { BottomBar, CustomIconButton } from './base/CustomButton';
 import { colors, fonts } from './base/theme';
 
 const Icon = createIconSetFromIcoMoon(icomoonConfig);
-
-const BottomBar = () => (
-    <View style={{
-        position: 'relative',
-        marginBottom: 18,
-        marginLeft: 18,
-        marginRight: 18,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-    }}>
-        <TouchableOpacity
-            onPress={() => { }}
-            style={{
-                backgroundColor: colors.black,
-                borderRadius: 36,
-                paddingVertical: 13,
-                width: 138,
-                borderWidth: 2.5,
-                borderColor: colors.white,
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}>
-            <Icon name="home-regular" size={20} color={colors.white} />
-            <Text style={{
-                fontFamily: 'Inter_Regular',
-                color: colors.white,
-                fontSize: 16,
-                marginLeft: 6,
-            }}>Home</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-            style={{
-                borderColor: colors.white,
-                backgroundColor: colors.lightgrey,
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderWidth: 2.5,
-                borderRadius: 56,
-                width: 56,
-                height: 56
-            }}
-            onPress={() => { }}>
-            <Icon
-                name="clock-regular"
-                size={20}
-                color={colors.black}
-            />
-        </TouchableOpacity>
-        <TouchableOpacity
-            style={{
-                borderColor: colors.white,
-                backgroundColor: colors.lightgrey,
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderWidth: 2.5,
-                borderRadius: 56,
-                width: 56,
-                height: 56
-            }}
-            onPress={() => { }}>
-            <Icon
-                name="user-regular"
-                size={20}
-                color={colors.black}
-            />
-        </TouchableOpacity>
-        <TouchableOpacity
-            style={{
-                borderColor: colors.white,
-                backgroundColor: colors.lightgrey,
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderWidth: 2.5,
-                borderRadius: 56,
-                width: 56,
-                height: 56
-            }}
-            onPress={() => { }}>
-            <Icon
-                name="menu-regular"
-                size={20}
-                color={colors.black}
-            />
-        </TouchableOpacity>
-    </View>
-)
-
-const CustomButton = ({ onPress, iconName, text, backgroundColor, textcolor }) => (
-    <TouchableOpacity
-        onPress={onPress}
-        style={{
-            backgroundColor: backgroundColor,
-            borderRadius: 36,
-            paddingVertical: 13,
-            width: 145,
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderWidth: 2.5,
-            borderColor: colors.white
-        }}>
-        <Icon name={iconName} size={20} color={textcolor} />
-        <Text style={{
-            fontFamily: 'Inter_Regular',
-            color: textcolor,
-            fontSize: 16,
-            marginLeft: 6,
-        }}>{text}</Text>
-    </TouchableOpacity>
-);
 
 const Home = ({ navigation }) => {
     const [isRefreshing, setIsRefreshing] = useState(false);
@@ -201,18 +87,20 @@ const Home = ({ navigation }) => {
                         flexDirection: 'row',
                         justifyContent: 'space-between'
                     }}>
-                        <CustomButton
+                        <CustomIconButton
                             onPress={() => { }}
                             iconName="heart-pulse-regular"
                             text="Checkup"
                             backgroundColor={colors.Royal_Blue}
                             textcolor={colors.white}
+                            width={145}
                         />
-                        <CustomButton
+                        <CustomIconButton
                             onPress={() => { }}
                             iconName="comment-regular"
                             text="Consult"
                             textcolor={colors.black}
+                            width={145}
                         />
                     </View>
                 </View>

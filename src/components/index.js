@@ -56,7 +56,7 @@ const App = () => {
             <RemotePushController />
             <AuthContext.Provider value={authContext}>
                 <StatusBar
-                    backgroundColor={colors.primary}
+                    backgroundColor={colors.black}
                     barStyle="light-content"
                 />
                 <NavigationContainer ref={navigationRef} fallback={<Text>Loading...</Text>}>

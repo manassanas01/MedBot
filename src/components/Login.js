@@ -15,6 +15,7 @@ import Snackbar from 'react-native-snackbar';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import tw from 'tailwind-react-native-classnames';
 import icomoonConfig from '../assets/fonts/icomoon/selection.json';
+import { CustomButton } from './base/CustomButton';
 import { AuthContext } from './base/context';
 
 import { colors, fonts } from './base/theme';
@@ -129,22 +130,16 @@ const Login = ({ navigation }) => {
                 </View>
             </View>
             {/* Sign In Button */}
-            <TouchableOpacity
+            <CustomButton
                 onPress={() => login(email, password)}
-                style={{
-                    backgroundColor: '#1c1c1c',
-                    borderRadius: 36,
-                    paddingHorizontal: 48,
-                    paddingVertical: 16,
-                    justifyContent: 'center',
-                    marginLeft: 'auto',
-                    backgroundColor: colors.Royal_Blue }}>
-                <Text style={{
-                    fontFamily: 'Inter_Regular',
-                    color: '#f5f5f5',
-                    fontSize: 16,
-                    color: colors.white}}>Sign In</Text>
-            </TouchableOpacity>
+                iconName="heart-pulse-regular"
+                text="Sign In"
+                backgroundColor={colors.Royal_Blue}
+                textcolor={colors.white}
+                btnstyle={{
+                    marginLeft: 'auto'
+                }}
+            />
 
             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 28, alignSelf: 'center' }}>
                 <Text style={[tw`text-sm`, { fontFamily: fonts.Nunito_Regular }, { color: colors.dark }]}>Don’t have an Account? </Text>
@@ -180,10 +175,10 @@ const Login = ({ navigation }) => {
             <View>
                 <TouchableOpacity
                     onPress={() => google_auth()}
-                    style={[tw`my-4 py-3`, { backgroundColor: colors.black, borderRadius: 36 }]}>
+                    style={[tw`my-4 py-2.5`, { backgroundColor: colors.black, borderRadius: 36 }]}>
                     <View style={tw`self-center`}>
                         {isLoading ?
-                            <ActivityIndicator size="small" color={ colors.Royal_Blue } />
+                            <ActivityIndicator size="small" color={colors.Royal_Blue} />
                             :
                             <View style={{ flexDirection: 'row' }}>
                                 <Image source={require('../assets/images/Google-icon/icon_google.png')} style={{ width: 24, resizeMode: 'contain', alignSelf: 'center' }} />
