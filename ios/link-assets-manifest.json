@@ -3,43 +3,43 @@
   "data": [
     {
       "path": "src/assets/fonts/icomoon/demo-files/demo.css",
-      "sha1": "2562ec72f54b744ca1b67cb4d63ee463c1be110d"
+      "sha1": "ec5f769edf4f6da42949869b4ad044815977d1cb"
     },
     {
       "path": "src/assets/fonts/icomoon/demo-files/demo.js",
-      "sha1": "e264ca246dbc4c632b053c19f7ca746b95b3f0b3"
+      "sha1": "3325132f9aaedbddaeb5eab2b9c0f9ce698b8d93"
     },
     {
       "path": "src/assets/fonts/icomoon/demo.html",
-      "sha1": "ebe4406609424b8b11fba11e68ebedd87881e1bf"
+      "sha1": "f81fb0447d07ae7cada565829b848717798ad87a"
     },
     {
       "path": "src/assets/fonts/icomoon/fonts/icomoon.eot",
-      "sha1": "0b6ecda77ae525ae781b8f2b78391bf69bb73896"
+      "sha1": "e37378bd3105bddf36b2cfa21a878594dd3a3bf4"
     },
     {
       "path": "src/assets/fonts/icomoon/fonts/icomoon.svg",
-      "sha1": "415db43396660a42724fe12fe6870476be0ea140"
+      "sha1": "1a05492f70c8f11fa84290d5ad24a41e7e7cea91"
     },
     {
       "path": "src/assets/fonts/icomoon/fonts/icomoon.ttf",
-      "sha1": "02e22fab0462eb240daaa63d60bb495f630b6b32"
+      "sha1": "798fcae9a42d43345a94c802efafee33febeae53"
     },
     {
       "path": "src/assets/fonts/icomoon/fonts/icomoon.woff",
-      "sha1": "2731a0a23d7db44090010c10dbc2bcb706883c94"
+      "sha1": "49f564e4ab366b8347e21c78a515678a473d685d"
     },
     {
       "path": "src/assets/fonts/icomoon/Read Me.txt",
-      "sha1": "7cb4baf9bd429bcd3833d2a96f3fbe29a7dd4ce9"
+      "sha1": "8b7c9e5010e041ead7a487a3eb2f14b490164901"
     },
     {
       "path": "src/assets/fonts/icomoon/selection.json",
-      "sha1": "52bc8cb84bb67da3d17570e95ec88d176b0bb2e7"
+      "sha1": "a40024bc947d5c6270b25c4d3fe58440fbc654b0"
     },
     {
       "path": "src/assets/fonts/icomoon/style.css",
-      "sha1": "add3d27e641483c01bccd9b3cc562fee37b7806a"
+      "sha1": "f3651b9139a58cba316592e9e3230b7f3576316f"
     },
     {
       "path": "src/assets/fonts/icomoon.zip",
@@ -55,7 +55,7 @@
     },
     {
       "path": "src/assets/fonts/Inter/README.txt",
-      "sha1": "7f8751ad30252050976f5618eb8bd93bc0f09e62"
+      "sha1": "7f1d503de1561845e8873038dd916f7b9ddea423"
     },
     {
       "path": "src/assets/fonts/Inter/static/Inter-Black.ttf",
@@ -168,6 +168,10 @@
     {
       "path": "src/assets/icon/icon.png",
       "sha1": "750557609f36f2e3940ec2bc052298487638fd13"
+    },
+    {
+      "path": "src/assets/images/ellipse1.png",
+      "sha1": "de75082cc6e3a9857132f838dc79b9d3691c61dc"
     },
     {
       "path": "src/assets/images/Google-icon/icon_google.png",

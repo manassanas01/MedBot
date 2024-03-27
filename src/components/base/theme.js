@@ -24,7 +24,8 @@ const fonts = {
     Nunito_Bold: 'Nunito-Bold',
     Inter_Regular: 'Inter-Regular',
     Inter_Bold: 'Inter-Bold',
-    Inter_Medium: 'Inter-Medium'
+    Inter_Medium: 'Inter-Medium',
+    Inter_SemiBold: 'Inter-SemiBold',
 }
 
 const url = 'https://firestore.googleapis.com/v1/'

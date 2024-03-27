@@ -131,19 +131,19 @@ const Login = ({ navigation }) => {
             {/* Sign In Button */}
             <TouchableOpacity
                 onPress={() => login(email, password)}
-                style={[{
+                style={{
                     backgroundColor: '#1c1c1c',
                     borderRadius: 36,
                     paddingHorizontal: 48,
                     paddingVertical: 16,
                     justifyContent: 'center',
-                    marginLeft: 'auto'
-                }, isDarkMode ? { backgroundColor: colors.Royal_Blue } : { backgroundColor: '#ffffff', borderWidth: 1, borderColor: '#cccccc' }]}>
-                <Text style={[{
+                    marginLeft: 'auto',
+                    backgroundColor: colors.Royal_Blue }}>
+                <Text style={{
                     fontFamily: 'Inter_Regular',
                     color: '#f5f5f5',
                     fontSize: 16,
-                }, isDarkMode ? { color: '#f5f5f5' } : { color: '#000000' }]}>Sign In</Text>
+                    color: colors.white}}>Sign In</Text>
             </TouchableOpacity>
 
             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 28, alignSelf: 'center' }}>
@@ -196,16 +196,5 @@ const Login = ({ navigation }) => {
         </SafeAreaView>
     )
 }
-/*
-const getdeviceinfo = () => {
-    let deviceJSON = {}
-    deviceJSON.uid = DeviceInfo.getUniqueId()
-    deviceJSON.model = DeviceInfo.getModel()
-    deviceJSON.ip = DeviceInfo.getIpAddressSync()
-    deviceJSON.os = Platform.OS;
-    return deviceJSON;
-}*/
 
-//const styles = StyleSheet.create({})
-
-export default Login
+export default Login;

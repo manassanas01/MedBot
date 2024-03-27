@@ -1,12 +1,8 @@
 import auth from '@react-native-firebase/auth';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import React from 'react';
-import {
-    ActivityIndicator,
-    StatusBar,
-    Text
-} from 'react-native';
+import React, { useEffect, useMemo, useState } from 'react';
+import { ActivityIndicator, StatusBar, Text } from 'react-native';
 import { navigationRef } from './base/RootNavigation';
 import { AuthContext } from './base/context';
 import { colors } from './base/theme';
@@ -15,39 +11,36 @@ import RemotePushController from './services/RemotePushController';
 import GetStarted from './GetStarted';
 import Home from './Home';
 import Login from './Login';
+import Profile from './Profile';
 
 const AuthStack = createStackNavigator();
 const Stack = createStackNavigator();
 
 const App = () => {
-    const [appVersion, setappVersion] = React.useState('')
-    //Set an initializing state whilst Firebase connects
-    const [initializing, setInitializing] = React.useState(false)
-    const [user, setUser] = React.useState()
+    const [initializing, setInitializing] = useState(true);
+    const [user, setUser] = useState(null);
+    const [appVersion, setAppVersion] = useState('');
 
-    const authcontext = React.useMemo(() => ({
+    const authContext = useMemo(() => ({
         signIn: (token, appversion) => {
-            setuserToken(token)
-            setappVersion(appversion)
+            setUserToken(token);
+            setAppVersion(appversion);
         },
         signOut: () => {
-            auth().signOut()
-            setUser()
+            auth().signOut();
+            setUser(null);
         }
-    }));
+    }), []);
 
-    //Handle user state changes
-    function onAuthStateChanged(user) {
+    useEffect(() => {
+        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+        return () => subscriber(); // unsubscribe on unmount
+    }, []);
+
+    const onAuthStateChanged = (user) => {
         setUser(user);
-        //_cleardata('user');
-        //_storedata('user', user);
         if (initializing) setInitializing(false);
     }
-
-    React.useEffect(() => {
-        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-        return subscriber; // unsubscribe on unmount
-    }, []);
 
     if (initializing) {
         return (
@@ -61,7 +54,7 @@ const App = () => {
     return (
         <>
             <RemotePushController />
-            <AuthContext.Provider value={authcontext}>
+            <AuthContext.Provider value={authContext}>
                 <StatusBar
                     backgroundColor={colors.primary}
                     barStyle="light-content"
@@ -75,7 +68,11 @@ const App = () => {
                         >
                             <Stack.Screen
                                 name="Home"
-                                children={Home}
+                                component={Home}
+                            />
+                            <Stack.Screen
+                                name="Profile"
+                                component={Profile}
                             />
                         </Stack.Navigator>
                     ) : (
@@ -99,6 +96,5 @@ const App = () => {
         </>
     )
 }
-
 
 export default App;

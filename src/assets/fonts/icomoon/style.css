@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?2dbik5');
-  src:  url('fonts/icomoon.eot?2dbik5#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?2dbik5') format('truetype'),
-    url('fonts/icomoon.woff?2dbik5') format('woff'),
-    url('fonts/icomoon.svg?2dbik5#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?nadepj');
+  src:  url('fonts/icomoon.eot?nadepj#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?nadepj') format('truetype'),
+    url('fonts/icomoon.woff?nadepj') format('woff'),
+    url('fonts/icomoon.svg?nadepj#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,57 +25,47 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-circle-info-solid:before {
-  content: "\e901";
-}
-.icon-user-solid:before {
+.icon-clock-regular:before {
   content: "\e900";
 }
-.icon-angle-down-solid:before {
+.icon-comment-regular:before {
+  content: "\e901";
+}
+.icon-download-regular:before {
+  content: "\e902";
+  color: #f5f5f5;
+}
+.icon-filter-regular:before {
   content: "\e903";
 }
-.icon-angle-right-solid:before {
+.icon-heart-pulse-regular:before {
   content: "\e904";
+  color: #f5f5f5;
 }
-.icon-angles-right-solid:before {
+.icon-home-regular:before {
   content: "\e905";
-}
-.icon-angle-up-solid:before {
-  content: "\e906";
-}
-.icon-floppy-disk-solid:before {
-  content: "\e907";
+  color: #f5f5f5;
 }
 .icon-magnifying-glass-solid:before {
+  content: "\e906";
+}
+.icon-menu-regular:before {
+  content: "\e907";
+}
+.icon-star-solid:before {
   content: "\e908";
 }
-.icon-pencil-solid:before {
+.icon-user-regular:before {
   content: "\e909";
 }
-.icon-plus-solid:before {
-  content: "\e90a";
-}
-.icon-trash-solid:before {
-  content: "\e90b";
-}
 .icon-angle-left-solid:before {
+  content: "\e90a";
+  color: #f5f5f5;
+}
+.icon-arrow-right-regular:before {
+  content: "\e90b";
+  color: #f5f5f5;
+}
+.icon-bell-regular:before {
   content: "\e90c";
-}
-.icon-eye-solid:before {
-  content: "\e90d";
-}
-.icon-hammer-solid:before {
-  content: "\e90e";
-}
-.icon-right-from-bracket-solid:before {
-  content: "\e90f";
-}
-.icon-bars-solid:before {
-  content: "\e910";
-}
-.icon-circle-question-solid:before {
-  content: "\e911";
-}
-.icon-tag-solid:before {
-  content: "\e912";
 }
