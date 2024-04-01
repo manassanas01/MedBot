@@ -6,7 +6,6 @@ import {
     Image,
     SafeAreaView,
     Text,
-    TextInput,
     TouchableOpacity,
     View,
     useColorScheme
@@ -15,7 +14,7 @@ import Snackbar from 'react-native-snackbar';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import tw from 'tailwind-react-native-classnames';
 import icomoonConfig from '../assets/fonts/icomoon/selection.json';
-import { BackButton, CustomButton } from './base/CustomComponents';
+import { BackButton, CustomButton, TextBox } from './base/CustomComponents';
 import { AuthContext } from './base/context';
 
 import { colors, fonts } from './base/theme';
@@ -103,7 +102,7 @@ const Login = ({ navigation }) => {
                 fontSize: 24,
             }, { color: colors.black }]}>Sign In</Text>
             <View style={tw`py-2`}>
-                <View style={tw`py-4`}>
+                {/*<View style={tw`py-4`}>
                     <Text style={[tw`text-sm font-medium ml-2`, tw`text-gray-700`]}>Email</Text>
                     <TextInput
                         style={[tw`my-1 text-base p-2 w-full`,
@@ -117,33 +116,19 @@ const Login = ({ navigation }) => {
                         keyboardType='email-address'
                         onChangeText={text => setemail(text)}
                     />
-                </View>
-                <View style={{
-                    paddingVertical: 16,
-                }}>
-                    <Text style={{
-                        fontSize: 14,
-                        fontWeight: '500',
-                        fontFamily: fonts.Inter_Regular,
-                        marginLeft: 8,
-                        color: colors.black,
-                    }}>Password</Text>
-                    <TextInput
-                        style={{
-                            fontFamily: fonts.Inter_Regular,
-                            fontSize: 16,
-                            marginTop: 8,
-                            padding: 8,
-                            width: '100%',
-                            borderWidth: 0,
-                            borderBottomWidth: 0.8,
-                            borderColor: colors.black,
-                            color: colors.black,
-                        }}
-                        secureTextEntry={true}
-                        onChangeText={text => setpassword(text)}
-                    />
-                </View>
+                    </View>*/}
+                <TextBox
+                    containerStyle={{ paddingVertical: 16 }}
+                    label="Email"
+                    keyboardType='email-address'
+                    onChangeText={text => setemail(text)}
+                />
+                <TextBox
+                    containerStyle={{ paddingVertical: 16 }}
+                    label="Password"
+                    secureTextEntry={true}
+                    onChangeText={text => setpassword(text)}
+                />
             </View>
             {/* Sign In Button */}
             <CustomButton

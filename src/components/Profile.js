@@ -6,7 +6,6 @@ import {
     Image,
     SafeAreaView,
     Text,
-    TextInput,
     TouchableOpacity,
     View,
     useColorScheme
@@ -15,7 +14,7 @@ import Snackbar from 'react-native-snackbar';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import tw from 'tailwind-react-native-classnames';
 import icomoonConfig from '../assets/fonts/icomoon/selection.json';
-import { BackButton, CustomButton } from './base/CustomComponents';
+import { BackButton, CustomButton, TextBox } from './base/CustomComponents';
 import { AuthContext } from './base/context';
 import { colors, fonts } from './base/theme';
 
@@ -103,7 +102,7 @@ const Profile = ({ navigation }) => {
                     alignItems: 'center'
                 }}>
                     <BackButton
-                    navigation={navigation}
+                        navigation={navigation}
                     />
                     <View style={{ flex: 1, alignItems: 'center' }}>
                         <Text style={{
@@ -150,7 +149,7 @@ const Profile = ({ navigation }) => {
                 padding: 8,
                 marginTop: 56
             }}>
-                <View style={tw`py-4`}>
+                {/*<View style={tw`py-4`}>
                     <Text style={[tw`text-sm font-medium  ml-2`, tw`text-gray-700`]}>Name</Text>
                     <TextInput
                         style={[tw`my-1 text-base p-2 w-full border-gray-300 rounded-md`,
@@ -160,7 +159,15 @@ const Profile = ({ navigation }) => {
                         value={name}
                         onChangeText={text => { setname(text); setbtnDisabled(false); }}
                     />
-                </View>
+        </View>*/}
+                <TextBox
+                    containerStyle={{ paddingVertical: 16 }}
+                    label="Name"
+                    value={name}
+                    placeholder='John Doe'
+                    keyboardType='default'
+                    onChangeText={text => { setname(text); setbtnDisabled(false); }}
+                />
                 <View style={tw`py-4`}>
                     <Text style={[tw`text-sm font-medium`, isDarkMode ? tw`text-white` : tw`text-gray-700`]}>Email</Text>
                     <TouchableOpacity onPress={() => navigation.navigate('UpdateEmail')} style={tw`my-1 text-base p-2 w-full border-2 border-gray-300 rounded-md`}>

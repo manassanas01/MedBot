@@ -1,9 +1,9 @@
 import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import icomoonConfig from '../../assets/fonts/icomoon/selection.json';
 
-import { colors } from "./theme";
+import { colors, fonts } from "./theme";
 
 const Icon = createIconSetFromIcoMoon(icomoonConfig);
 
@@ -72,6 +72,101 @@ const BackButton = ({ navigation, style }) => (
             size={20}
             color={colors.white}
         />
+    </TouchableOpacity>
+)
+
+const TextBox = ({ label, value, placeholder, secureTextEntry, onChangeText, keyboardType, containerStyle, labelStyle, style }) => (
+    <View style={containerStyle}>
+        <Text style={[{
+            fontSize: 14,
+            fontFamily: fonts.Inter_Regular,
+            color: colors.black,
+            marginLeft: 6
+        }, labelStyle]}>{label}</Text>
+        <TextInput
+            style={[{
+                fontFamily: fonts.Inter_Regular,
+                fontSize: 16,
+                padding: 6,
+                width: '100%',
+                borderWidth: 0,
+                borderBottomWidth: 0.8,
+                borderColor: colors.black,
+                color: colors.black
+            }, style]}
+            placeholder={placeholder}
+            value={value}
+            keyboardType={keyboardType}
+            secureTextEntry={secureTextEntry}
+            onChangeText={onChangeText}
+        />
+    </View>
+)
+
+const Doctorcard = ({ name, category, starrating, reviews, onPress }) => (
+    <TouchableOpacity
+        onPress={onPress}
+        style={{
+            margin: 18,
+            padding: 18,
+            flexDirection: 'row',
+            backgroundColor: colors.lightgrey,
+            borderRadius: 50
+        }}>
+        <View>
+            <Image
+                style={{
+                    width: 82,
+                    height: 92,
+                    borderRadius: 30,
+                    resizeMode: 'contain',
+                    alignSelf: 'center',
+                    backgroundColor: colors.white
+                }}
+                source={require('../../assets/images/image5.png')}
+            />
+        </View>
+        <View style={{
+            marginLeft: 18
+        }}>
+            <Text style={{
+                fontFamily: fonts.Inter_SemiBold,
+                fontSize: 16,
+                color: colors.black
+            }}>{name}</Text>
+            <Text style={{
+                fontFamily: fonts.Inter_Regular,
+                fontSize: 12,
+                color: '#757575'
+            }}>{category}</Text>
+            <View style={{
+                flexDirection: 'row',
+                alignItems: 'center'
+            }}>
+                <Text style={{
+                    fontFamily: fonts.Inter_Regular,
+                    fontSize: 16,
+                    marginTop: 6,
+                    color: colors.black
+                }}>{starrating}</Text>
+                <Icon
+                    name="star-solid"
+                    size={10}
+                    color={colors.black}
+                    style={{
+                        marginTop: 4,
+                        marginLeft: 2,
+                        marginRight: 4
+                    }}
+                />
+                <Text style={{
+                    fontFamily: fonts.Inter_Regular,
+                    fontSize: 16,
+                    marginTop: 6,
+                    color: colors.black
+                }}>({reviews})</Text>
+            </View>
+        </View>
     </TouchableOpacity>
 )
 
@@ -155,6 +250,6 @@ const BottomBar = ({ navigation }) => (
 
 export {
     BackButton, BottomBar, CustomButton,
-    CustomIconButton
+    CustomIconButton, Doctorcard, TextBox
 };
 
