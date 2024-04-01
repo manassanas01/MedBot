@@ -104,7 +104,8 @@ const Profile = ({ navigation }) => {
                 <View style={tw`py-4`}>
                     <Text style={[tw`text-sm font-medium  ml-2`, tw`text-gray-700`]}>Name</Text>
                     <TextInput
-                        style={[tw`my-1 text-base p-2 w-full border-gray-300 rounded-md`, { borderWidth: 0, borderBottomWidth: 2, color: colors.black }]}
+                        style={[tw`my-1 text-base p-2 w-full border-gray-300 rounded-md`, 
+                        { borderWidth: 0, borderBottomWidth: 2, color: colors.black }]}
                         keyboardType='default'
                         placeholder='John Doe'
                         value={name}

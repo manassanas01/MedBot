@@ -6,12 +6,14 @@ import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import tw from 'tailwind-react-native-classnames';
 import icomoonConfig from '../assets/fonts/icomoon/selection.json';
 import { BottomBar, CustomIconButton } from './base/CustomButton';
+import Doctorcard from './base/Doctorcard';
 import { colors, fonts } from './base/theme';
 
 const Icon = createIconSetFromIcoMoon(icomoonConfig);
 
 const Home = ({ navigation }) => {
     const [isRefreshing, setIsRefreshing] = useState(false);
+    const [data, setdata] = useState("dw");
 
     const onRefresh = () => { };
 
@@ -111,26 +113,39 @@ const Home = ({ navigation }) => {
                         marginLeft: 28,
                         marginTop: 28
                     }}>Recent</Text>
-                    <Image
-                        style={{
-                            width: 260,
-                            height: 260,
-                            resizeMode: 'contain',
-                            alignSelf: 'center'
-                        }}
-                        source={require('../assets/images/stethoscope.png')}
-                    />
-                    <Text style={{
-                        fontFamily: fonts.Inter_Regular,
-                        fontSize: 18,
-                        alignSelf: 'center'
-                    }}>
-                        No Recent Doctors
-                    </Text>
+                    {data ? (
+                        <Doctorcard
+                            name="Dr. Sebastian Koch"
+                            category="Neurologist"
+                            starrating="4.8"
+                            reviews="152"
+                        />
+                    ) : (
+                        <>
+                            <Image
+                                style={{
+                                    width: 260,
+                                    height: 260,
+                                    resizeMode: 'contain',
+                                    alignSelf: 'center'
+                                }}
+                                source={require('../assets/images/stethoscope.png')}
+                            />
+                            <Text style={{
+                                fontFamily: fonts.Inter_Regular,
+                                fontSize: 18,
+                                alignSelf: 'center'
+                            }}>
+                                No Recent Doctors
+                            </Text>
+                        </>
+                    )
+                    }
                 </View>
             </ScrollView>
-            <BottomBar />
-        </SafeAreaView>
+            <BottomBar
+            />
+        </SafeAreaView >
     );
 };
 

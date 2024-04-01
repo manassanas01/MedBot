@@ -54,7 +54,7 @@ const CustomIconButton = ({ onPress, iconName, text, backgroundColor, textcolor,
     </TouchableOpacity>
 );
 
-const BottomBar = () => (
+const BottomBar = ({navigation}) => (
     <View style={{
         position: 'relative',
         marginBottom: 18,
@@ -103,7 +103,7 @@ const BottomBar = () => (
                 width: 56,
                 height: 56
             }}
-            onPress={() => { }}>
+            onPress={() => {}}>
             <Icon
                 name="user-regular"
                 size={20}
