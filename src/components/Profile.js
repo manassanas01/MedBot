@@ -15,7 +15,7 @@ import Snackbar from 'react-native-snackbar';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import tw from 'tailwind-react-native-classnames';
 import icomoonConfig from '../assets/fonts/icomoon/selection.json';
-import { BackButton, CustomButton } from './base/CustomButton';
+import { BackButton, CustomButton } from './base/CustomComponents';
 import { AuthContext } from './base/context';
 import { colors, fonts } from './base/theme';
 

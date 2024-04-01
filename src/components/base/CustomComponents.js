@@ -54,9 +54,9 @@ const CustomIconButton = ({ onPress, iconName, text, backgroundColor, textcolor,
     </TouchableOpacity>
 );
 
-const BackButton = ({ navigation }) => (
+const BackButton = ({ navigation, style }) => (
     <TouchableOpacity
-        style={{
+        style={[{
             backgroundColor: colors.black,
             borderColor: colors.white,
             borderWidth: 3,
@@ -65,7 +65,7 @@ const BackButton = ({ navigation }) => (
             height: 60,
             justifyContent: 'center', // Center vertically
             alignItems: 'center', // Center horizontally
-        }}
+        }, style]}
         onPress={() => navigation.replace('Home')}>
         <Icon
             name="angle-left-solid"

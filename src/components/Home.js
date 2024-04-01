@@ -5,7 +5,7 @@ import { Text } from 'react-native-paper';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import tw from 'tailwind-react-native-classnames';
 import icomoonConfig from '../assets/fonts/icomoon/selection.json';
-import { BottomBar, CustomIconButton } from './base/CustomButton';
+import { BottomBar, CustomIconButton } from './base/CustomComponents';
 import Doctorcard from './base/Doctorcard';
 import { colors, fonts } from './base/theme';
 

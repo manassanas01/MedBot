@@ -15,7 +15,7 @@ import Snackbar from 'react-native-snackbar';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import tw from 'tailwind-react-native-classnames';
 import icomoonConfig from '../assets/fonts/icomoon/selection.json';
-import { CustomButton } from './base/CustomButton';
+import { BackButton, CustomButton } from './base/CustomComponents';
 import { AuthContext } from './base/context';
 
 import { colors, fonts } from './base/theme';
@@ -91,18 +91,13 @@ const Login = ({ navigation }) => {
 
     return (
         <SafeAreaView style={[{ backgroundColor: colors.lightgrey }, tw`m-1 p-6 h-full`]}>
-            <TouchableOpacity
-                style={[
-                    tw`self-start my-4 px-1.5 py-4 rounded-2xl`,
-                    { borderColor: colors.whitesmoke, borderWidth: 2, backgroundColor: colors.black }]}
-                onPress={() => navigation.goBack()}>
-                <Icon
-                    name="angle-left-solid"
-                    size={20}
-                    color={colors.white}
-                    style={tw`mx-3.5`}
-                />
-            </TouchableOpacity>
+            <BackButton
+                navigation={navigation}
+                style={{
+                    marginTop: 14,
+                    marginBottom: 8
+                }}
+            />
             <Text style={[tw`mb-1 mt-8`, {
                 fontFamily: fonts.Inter_Medium,
                 fontSize: 24,
@@ -111,19 +106,40 @@ const Login = ({ navigation }) => {
                 <View style={tw`py-4`}>
                     <Text style={[tw`text-sm font-medium ml-2`, tw`text-gray-700`]}>Email</Text>
                     <TextInput
-                        style={[tw`my-1 text-base p-2 w-full border-gray-300 rounded-md`,
-                        { borderWidth: 0, borderBottomWidth: 2, color: colors.black }
+                        style={[tw`my-1 text-base p-2 w-full`,
+                        {
+                            borderWidth: 0,
+                            borderBottomWidth: 0.8,
+                            borderColor: colors.black,
+                            color: colors.black
+                        }
                         ]}
                         keyboardType='email-address'
                         onChangeText={text => setemail(text)}
                     />
                 </View>
-                <View style={tw`py-4`}>
-                    <Text style={[tw`text-sm font-medium  ml-2`, tw`text-gray-700`]}>Password</Text>
+                <View style={{
+                    paddingVertical: 16,
+                }}>
+                    <Text style={{
+                        fontSize: 14,
+                        fontWeight: '500',
+                        fontFamily: fonts.Inter_Regular,
+                        marginLeft: 8,
+                        color: colors.black,
+                    }}>Password</Text>
                     <TextInput
-                        style={[tw`my-1 text-base p-2 w-full border-gray-300 rounded-md`,
-                        { borderWidth: 0, borderBottomWidth: 2, color: colors.black }
-                        ]}
+                        style={{
+                            fontFamily: fonts.Inter_Regular,
+                            fontSize: 16,
+                            marginTop: 8,
+                            padding: 8,
+                            width: '100%',
+                            borderWidth: 0,
+                            borderBottomWidth: 0.8,
+                            borderColor: colors.black,
+                            color: colors.black,
+                        }}
                         secureTextEntry={true}
                         onChangeText={text => setpassword(text)}
                     />
