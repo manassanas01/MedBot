@@ -144,6 +144,7 @@ const Home = ({ navigation }) => {
                 </View>
             </ScrollView>
             <BottomBar
+            navigation={navigation}
             />
         </SafeAreaView >
     );

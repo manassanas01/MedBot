@@ -84,7 +84,7 @@ const BottomBar = ({navigation}) => (
                 width: 56,
                 height: 56
             }}
-            onPress={() => { }}>
+            onPress={() => navigation.navigate('Home')}>
             <Icon
                 name="clock-regular"
                 size={20}
@@ -103,7 +103,7 @@ const BottomBar = ({navigation}) => (
                 width: 56,
                 height: 56
             }}
-            onPress={() => {}}>
+            onPress={() => navigation.navigate('Profile')}>
             <Icon
                 name="user-regular"
                 size={20}
