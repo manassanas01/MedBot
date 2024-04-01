@@ -61,7 +61,7 @@ const Home = ({ navigation }) => {
                         </View>
                         <TouchableOpacity
                             style={{
-                                borderColor: colors.whitesmoke,
+                                borderColor: colors.white,
                                 borderWidth: 3,
                                 borderRadius: 56,
                                 paddingVertical: 18,

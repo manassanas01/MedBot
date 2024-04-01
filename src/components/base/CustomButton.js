@@ -54,7 +54,28 @@ const CustomIconButton = ({ onPress, iconName, text, backgroundColor, textcolor,
     </TouchableOpacity>
 );
 
-const BottomBar = ({navigation}) => (
+const BackButton = ({ navigation }) => (
+    <TouchableOpacity
+        style={{
+            backgroundColor: colors.black,
+            borderColor: colors.white,
+            borderWidth: 3,
+            borderRadius: 18,
+            width: 60,
+            height: 60,
+            justifyContent: 'center', // Center vertically
+            alignItems: 'center', // Center horizontally
+        }}
+        onPress={() => navigation.replace('Home')}>
+        <Icon
+            name="angle-left-solid"
+            size={20}
+            color={colors.white}
+        />
+    </TouchableOpacity>
+)
+
+const BottomBar = ({ navigation }) => (
     <View style={{
         position: 'relative',
         marginBottom: 18,
@@ -133,7 +154,7 @@ const BottomBar = ({navigation}) => (
 )
 
 export {
-    BottomBar, CustomButton,
+    BackButton, BottomBar, CustomButton,
     CustomIconButton
 };
 

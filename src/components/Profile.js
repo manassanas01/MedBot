@@ -3,6 +3,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import {
     ActivityIndicator,
+    Image,
     SafeAreaView,
     Text,
     TextInput,
@@ -14,7 +15,7 @@ import Snackbar from 'react-native-snackbar';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import tw from 'tailwind-react-native-classnames';
 import icomoonConfig from '../assets/fonts/icomoon/selection.json';
-import { CustomButton } from './base/CustomButton';
+import { BackButton, CustomButton } from './base/CustomButton';
 import { AuthContext } from './base/context';
 import { colors, fonts } from './base/theme';
 
@@ -89,22 +90,70 @@ const Profile = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView style={[{ backgroundColor: colors.white }, tw`p-6 h-full`]}>
-            <TouchableOpacity
-                style={[tw`self-start my-4 px-1.5 py-4 rounded-2xl`, { backgroundColor: colors.black }]}
-                onPress={() => navigation.replace('Home')}>
-                <Icon
-                    name="angle-left-solid"
-                    size={20}
-                    color={colors.white}
-                    style={tw`mx-3.5`}
+        <SafeAreaView style={[{ backgroundColor: colors.white }, tw`h-full`]}>
+            {/* Top Bar */}
+            <View style={{
+                padding: 24,
+                backgroundColor: colors.lightgrey,
+                borderBottomLeftRadius: 50,
+                borderBottomRightRadius: 50,
+            }}>
+                <View style={{
+                    flexDirection: 'row',
+                    alignItems: 'center'
+                }}>
+                    <BackButton
+                    navigation={navigation}
+                    />
+                    <View style={{ flex: 1, alignItems: 'center' }}>
+                        <Text style={{
+                            fontFamily: fonts.Inter_SemiBold,
+                            fontSize: 16,
+                            color: colors.black,
+                        }}>Profile</Text>
+                    </View>
+                    <TouchableOpacity
+                        style={{
+                            borderColor: colors.white,
+                            borderWidth: 3,
+                            borderRadius: 56,
+                            paddingVertical: 18,
+                            paddingHorizontal: 5,
+                            backgroundColor: colors.lightgrey,
+                        }}
+                        onPress={() => { }}>
+                        <Icon
+                            name="bell-regular"
+                            size={20}
+                            color={colors.black}
+                            style={tw`mx-3.5`}
+                        />
+                    </TouchableOpacity>
+                </View>
+                <Image
+                    style={{
+                        width: 128,
+                        height: 128,
+                        marginBottom: -80,
+                        resizeMode: 'contain',
+                        alignSelf: 'center',
+                        borderWidth: 6,
+                        borderRadius: 80,
+                        borderColor: colors.white
+                    }}
+                    source={require('../assets/images/profile-pic.png')}
                 />
-            </TouchableOpacity>
-            <View style={tw`py-2`}>
+            </View>
+
+            <View style={{
+                margin: 24,
+                padding: 8,
+                marginTop: 56
+            }}>
                 <View style={tw`py-4`}>
                     <Text style={[tw`text-sm font-medium  ml-2`, tw`text-gray-700`]}>Name</Text>
                     <TextInput
-                        style={[tw`my-1 text-base p-2 w-full border-gray-300 rounded-md`, 
+                        style={[tw`my-1 text-base p-2 w-full border-gray-300 rounded-md`,
                         { borderWidth: 0, borderBottomWidth: 2, color: colors.black }]}
                         keyboardType='default'
                         placeholder='John Doe'
@@ -126,24 +175,25 @@ const Profile = ({ navigation }) => {
                 </View>
             </View>
             <View style={{
-                        flexDirection: 'row',
-                        justifyContent: 'space-between'
-                    }}>
-                        <CustomButton
-                            onPress={() => onupdateProfile()}
-                            iconName="heart-pulse-regular"
-                            text="Save"
-                            backgroundColor={colors.lightgrey}
-                            textcolor={colors.black}
-                        />
-                        <CustomButton
-                            onPress={() => signOut()}
-                            iconName="comment-regular"
-                            text="Sign Out"
-                            backgroundColor={colors.Royal_Blue}
-                            textcolor={colors.white}
-                        />
-                    </View>
+                margin: 24,
+                flexDirection: 'row',
+                justifyContent: 'space-between'
+            }}>
+                <CustomButton
+                    onPress={() => onupdateProfile()}
+                    iconName="heart-pulse-regular"
+                    text="Save"
+                    backgroundColor={colors.lightgrey}
+                    textcolor={colors.black}
+                />
+                <CustomButton
+                    onPress={() => signOut()}
+                    iconName="comment-regular"
+                    text="Sign Out"
+                    backgroundColor={colors.Royal_Blue}
+                    textcolor={colors.white}
+                />
+            </View>
         </SafeAreaView>
     )
 }
