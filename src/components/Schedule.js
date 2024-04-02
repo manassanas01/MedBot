@@ -44,11 +44,12 @@ const Slot = ({ date, slot1, slot2, onPress }) => (
 const Schedule = ({ navigation }) => {
     return (
         <SafeAreaView style={{
-            padding: 24,
+
             backgroundColor: colors.white,
-            height: '100%'
+            height: '100%',
+            flex: 1, // Make SafeAreaView take up entire screen
         }}>
-            <ScrollView style={{ height: '100%' }}>
+            <ScrollView style={{ height: '100%', flex: 1, padding: 24 }}>
                 <View style={{
                     flexDirection: 'row',
                     alignItems: 'center',
