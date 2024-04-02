@@ -9,6 +9,7 @@ import { AuthContext } from './base/context';
 import { colors } from './base/theme';
 import RemotePushController from './services/RemotePushController';
 
+import ChatBot from './ChatBot';
 import GetStarted from './GetStarted';
 import Home from './Home';
 import Login from './Login';
@@ -84,6 +85,10 @@ const App = () => {
                             <Stack.Screen
                                 name="Summary"
                                 component={Summary}
+                            />
+                            <Stack.Screen
+                                name="ChatBox"
+                                component={ChatBot}
                             />
                         </Stack.Navigator>
                     ) : (

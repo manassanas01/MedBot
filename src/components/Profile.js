@@ -164,7 +164,6 @@ const Profile = ({ navigation }) => {
                             name="bell-regular"
                             size={20}
                             color={colors.black}
-                            style={tw`mx-3.5`}
                         />
                     </TouchableOpacity>
                 </View>

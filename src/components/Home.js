@@ -113,7 +113,7 @@ const Home = ({ navigation }) => {
                             width={145}
                         />
                         <CustomIconButton
-                            onPress={() => { }}
+                            onPress={() => navigation.navigate('ChatBox')}
                             iconName="comment-regular"
                             text="Consult"
                             textcolor={colors.black}
