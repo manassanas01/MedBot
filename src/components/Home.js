@@ -1,3 +1,4 @@
+import auth from '@react-native-firebase/auth';
 import React, { useState } from 'react';
 import { Image, RefreshControl, SafeAreaView, ScrollView, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -12,9 +13,17 @@ const Icon = createIconSetFromIcoMoon(icomoonConfig);
 
 const Home = ({ navigation }) => {
     const [isRefreshing, setIsRefreshing] = useState(false);
+    const [name, setname] = React.useState('Joe');
     const [data, setdata] = useState("dw");
 
     const onRefresh = () => { };
+
+    React.useEffect(
+        React.useCallback(() => {
+            const current_user = auth().currentUser;
+            setname(current_user.displayName);
+        })
+    );
 
     return (
         <SafeAreaView style={[{ backgroundColor: colors.white }, tw`h-full`]}>
@@ -56,7 +65,7 @@ const Home = ({ navigation }) => {
                                 fontFamily: fonts.Inter_Regular,
                                 fontSize: 16,
                                 marginLeft: 12,
-                            }}>Hello, Joe</Text>
+                            }}>Hello, {name}</Text>
                         </View>
                         <TouchableOpacity
                             style={{
@@ -118,6 +127,7 @@ const Home = ({ navigation }) => {
                             category="Neurologist"
                             starrating="4.8"
                             reviews="152"
+                            onPress={() => navigation.navigate('Schedule')}
                         />
                     ) : (
                         <>

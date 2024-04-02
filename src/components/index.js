@@ -12,6 +12,7 @@ import GetStarted from './GetStarted';
 import Home from './Home';
 import Login from './Login';
 import Profile from './Profile';
+import Schedule from './Schedule';
 
 const AuthStack = createStackNavigator();
 const Stack = createStackNavigator();
@@ -73,6 +74,10 @@ const App = () => {
                             <Stack.Screen
                                 name="Profile"
                                 component={Profile}
+                            />
+                            <Stack.Screen
+                                name="Schedule"
+                                component={Schedule}
                             />
                         </Stack.Navigator>
                     ) : (
