@@ -36,7 +36,7 @@ const GetStarted = ({ navigation }) => {
                                 onPress={() => navigation.navigate('Login')}
                                 style={[{
                                     backgroundColor: '#1c1c1c',
-                                    height: 56,
+                                    height: 52,
                                     borderRadius: 36,
                                     paddingHorizontal: 48,
                                     justifyContent: 'center',
@@ -52,7 +52,7 @@ const GetStarted = ({ navigation }) => {
                                 onPress={() => { }}
                                 style={[{
                                     backgroundColor: '#1c1c1c',
-                                    height: 56,
+                                    height: 52,
                                     borderRadius: 36,
                                     paddingHorizontal: 48,
                                     justifyContent: 'center',
