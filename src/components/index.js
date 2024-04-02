@@ -14,6 +14,7 @@ import Home from './Home';
 import Login from './Login';
 import Profile from './Profile';
 import Schedule from './Schedule';
+import Summary from './Summary';
 
 const AuthStack = createStackNavigator();
 const Stack = createStackNavigator();
@@ -79,6 +80,10 @@ const App = () => {
                             <Stack.Screen
                                 name="Schedule"
                                 component={Schedule}
+                            />
+                            <Stack.Screen
+                                name="Summary"
+                                component={Summary}
                             />
                         </Stack.Navigator>
                     ) : (

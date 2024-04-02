@@ -71,6 +71,7 @@ const Schedule = ({ navigation }) => {
                     style={{
                         marginTop: 24,
                         padding: 18,
+                        paddingTop: 24,
                         backgroundColor: colors.lightgrey,
                         borderRadius: 50
                     }}>
@@ -151,6 +152,7 @@ const Schedule = ({ navigation }) => {
                         date="Mon, Feb 6"
                         slot1="09:30 AM"
                         slot2="12:30 PM"
+                        onPress={() => navigation.navigate('Summary')}
                     />
                     <Slot
                         date="Mon, Feb 6"
