@@ -32,7 +32,7 @@ const Login = ({ navigation }) => {
     const google_auth = async () => {
         setisLoading(true);
         GoogleSignin.configure({
-            webClientId: '149615571443-hv173mr747iupqojf71mni5p7i0rac13.apps.googleusercontent.com',
+            webClientId: '149615571443-4iaut27me8acd8aftqsml64vf7p78s41.apps.googleusercontent.com',
         });
         // Get the users ID token
         //const { idToken } = await GoogleSignin.signIn();
