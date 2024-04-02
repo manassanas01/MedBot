@@ -53,17 +53,18 @@ const Home = ({ navigation }) => {
                         alignItems: 'center'
                     }}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-
-                            <Image
-                                style={{
-                                    width: 48,
-                                    height: 48,
-                                    borderRadius: 30,
-                                    borderWidth: 3,
-                                    borderColor: colors.white,
-                                    resizeMode: 'contain'
-                                }}
-                                source={{ uri: imageUri }} />
+                            {imageUri ? (
+                                <Image
+                                    style={{
+                                        width: 48,
+                                        height: 48,
+                                        borderRadius: 30,
+                                        borderWidth: 3,
+                                        borderColor: colors.white,
+                                        resizeMode: 'contain'
+                                    }}
+                                    source={{ uri: imageUri }} />
+                            ) : null}
                             <Text style={{
                                 color: colors.black,
                                 fontFamily: fonts.Inter_Regular,
@@ -76,9 +77,11 @@ const Home = ({ navigation }) => {
                                 borderColor: colors.white,
                                 borderWidth: 3,
                                 borderRadius: 56,
-                                paddingVertical: 18,
-                                paddingHorizontal: 5,
+                                height: 56,
+                                width: 56,
                                 backgroundColor: colors.lightgrey,
+                                justifyContent: 'center',
+                                alignItems: 'center'
                             }}
                             onPress={() => { }}>
                             <Icon

@@ -50,12 +50,12 @@ const Profile = ({ navigation }) => {
     const onupdateProfile = async () => {
         const current_user = auth().currentUser;
         const uid = current_user.uid;
-        
+
         // Get the file extension from the image URI
         const fileExtension = imageUri.split('.').pop();
         // Set the image name as the user's UID + file extension
         const imageName = `${uid}.${fileExtension}`;
-        const reference = storage().ref('doctors/' + imageName); // Set your desired path
+        const reference = storage().ref('user-pfp/' + imageName); // Set your desired path
 
         try {
             await reference.putFile(imageUri)
@@ -139,7 +139,7 @@ const Profile = ({ navigation }) => {
                     alignItems: 'center'
                 }}>
                     <BackButton
-                        navigation={navigation}
+                        onPress={() => navigation.replace('Home')}
                     />
                     <View style={{ flex: 1, alignItems: 'center' }}>
                         <Text style={{
@@ -151,11 +151,13 @@ const Profile = ({ navigation }) => {
                     <TouchableOpacity
                         style={{
                             borderColor: colors.white,
-                            borderWidth: 3,
-                            borderRadius: 56,
-                            paddingVertical: 18,
-                            paddingHorizontal: 5,
-                            backgroundColor: colors.lightgrey,
+                                borderWidth: 3,
+                                borderRadius: 56,
+                                height: 56,
+                                width: 56,
+                                backgroundColor: colors.lightgrey,
+                                justifyContent: 'center',
+                                alignItems: 'center'
                         }}
                         onPress={() => { }}>
                         <Icon
@@ -180,17 +182,20 @@ const Profile = ({ navigation }) => {
                         justifyContent: 'center'
                     }}
                     onPress={() => chooseImage()}>
-                    <Image
-                        style={{
-                            width: 120,
-                            height: 120,
-                            borderRadius: 80,
-                        }}
-                        //source={require('../assets/images/profile-pic.png')}
-                        source={{
-                            uri: imageUri
-                        }}
-                    />
+                    {imageUri ? (
+                        <Image
+                            style={{
+                                width: 120,
+                                height: 120,
+                                borderRadius: 80,
+                            }}
+                            //source={require('../assets/images/profile-pic.png')}
+                            source={{
+                                uri: imageUri
+                            }}
+                        />
+                    ) : null
+                    }
                 </TouchableOpacity>
             </View>
 

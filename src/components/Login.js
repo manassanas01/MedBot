@@ -91,7 +91,7 @@ const Login = ({ navigation }) => {
     return (
         <SafeAreaView style={[{ backgroundColor: colors.lightgrey }, tw`m-1 p-6 h-full`]}>
             <BackButton
-                navigation={navigation}
+                onPress={() =>  navigation.goBack()}
                 style={{
                     marginTop: 14,
                     marginBottom: 8
