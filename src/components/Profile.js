@@ -1,4 +1,5 @@
 import auth from '@react-native-firebase/auth';
+import storage from '@react-native-firebase/storage';
 import { useFocusEffect } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import {
@@ -10,6 +11,7 @@ import {
     View,
     useColorScheme
 } from 'react-native';
+import { launchImageLibrary } from 'react-native-image-picker';
 import Snackbar from 'react-native-snackbar';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import tw from 'tailwind-react-native-classnames';
@@ -26,16 +28,49 @@ const Profile = ({ navigation }) => {
     const [btnDisabled, setbtnDisabled] = React.useState(true);
     const [name, setname] = React.useState('go');
     const [email, setemail] = React.useState('');
-    const [user, setuser] = React.useState()
+    const [user, setuser] = React.useState();
+    const [imageUri, setImageUri] = React.useState(null);
+    //const [base64Image, setBase64Image] = React.useState(null);
     const isDarkMode = useColorScheme() === 'light';
     const { signOut } = React.useContext(AuthContext);
 
-    const onupdateProfile = () => {
+    const chooseImage = () => {
+        launchImageLibrary({
+            //includeBase64: true,
+            mediaType: 'photo'
+        }, response => {
+            //console.log(response)
+            if (response.assets[0]) {
+                setImageUri(response.assets[0].uri);
+                //setBase64Image(response.base64);
+            }
+        })
+    }
+
+    const onupdateProfile = async () => {
+        const current_user = auth().currentUser;
+        const uid = current_user.uid;
+        
+        // Get the file extension from the image URI
+        const fileExtension = imageUri.split('.').pop();
+        // Set the image name as the user's UID + file extension
+        const imageName = `${uid}.${fileExtension}`;
+        const reference = storage().ref('doctors/' + imageName); // Set your desired path
+
+        try {
+            await reference.putFile(imageUri)
+            const url = await reference.getDownloadURL();
+            setImageUri(url);
+            console.log('Image uploaded successfully!')
+        } catch (error) {
+            console.error('Error uploading image: ', error)
+        }
+
         setisbtnLoading(true);
         setbtnDisabled(true);
-        const current_user = auth().currentUser;
         current_user.updateProfile({
-            displayName: name
+            displayName: name,
+            photoURL: imageUri
         });
         //current_user.updateEmail(email);
         setbtnDisabled(false);
@@ -67,6 +102,8 @@ const Profile = ({ navigation }) => {
             setuser(current_user);
             setname(current_user.displayName);
             setemail(current_user.email);
+            setImageUri(current_user.photoURL);
+            console.log(current_user.photoURL);
             setisLoading(false);
         }, 1000);
         return () => {
@@ -129,19 +166,32 @@ const Profile = ({ navigation }) => {
                         />
                     </TouchableOpacity>
                 </View>
-                <Image
+                <TouchableOpacity
                     style={{
-                        width: 128,
-                        height: 128,
+                        width: 130,
+                        height: 130,
                         marginBottom: -80,
                         resizeMode: 'contain',
-                        alignSelf: 'center',
                         borderWidth: 6,
                         borderRadius: 80,
-                        borderColor: colors.white
+                        borderColor: colors.white,
+                        alignSelf: 'center',
+                        alignItems: 'center',
+                        justifyContent: 'center'
                     }}
-                    source={require('../assets/images/profile-pic.png')}
-                />
+                    onPress={() => chooseImage()}>
+                    <Image
+                        style={{
+                            width: 120,
+                            height: 120,
+                            borderRadius: 80,
+                        }}
+                        //source={require('../assets/images/profile-pic.png')}
+                        source={{
+                            uri: imageUri
+                        }}
+                    />
+                </TouchableOpacity>
             </View>
 
             <View style={{

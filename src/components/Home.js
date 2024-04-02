@@ -12,9 +12,10 @@ import { colors, fonts } from './base/theme';
 const Icon = createIconSetFromIcoMoon(icomoonConfig);
 
 const Home = ({ navigation }) => {
-    const [isRefreshing, setIsRefreshing] = useState(false);
-    const [name, setname] = React.useState('Joe');
-    const [data, setdata] = useState("dw");
+    const [isRefreshing, setIsRefreshing] = useState(false)
+    const [name, setname] = React.useState('Joe')
+    const [data, setdata] = useState("dw")
+    const [imageUri, setImageUri] = React.useState(null);
 
     const onRefresh = () => { };
 
@@ -22,7 +23,11 @@ const Home = ({ navigation }) => {
         React.useCallback(() => {
             const current_user = auth().currentUser;
             setname(current_user.displayName);
-        })
+            setImageUri(current_user.photoURL);
+            return () => {
+                current_user;
+            }
+        }, [])
     );
 
     return (
@@ -48,18 +53,17 @@ const Home = ({ navigation }) => {
                         alignItems: 'center'
                     }}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <TouchableOpacity
-                                onPress={() => navigation.navigate('Profile')}
-                            >
-                                <Image
-                                    style={{
-                                        width: 48,
-                                        height: 48,
-                                        resizeMode: 'contain'
-                                    }}
-                                    source={require('../assets/images/ellipse1.png')}
-                                />
-                            </TouchableOpacity>
+
+                            <Image
+                                style={{
+                                    width: 48,
+                                    height: 48,
+                                    borderRadius: 30,
+                                    borderWidth: 3,
+                                    borderColor: colors.white,
+                                    resizeMode: 'contain'
+                                }}
+                                source={{ uri: imageUri }} />
                             <Text style={{
                                 color: colors.black,
                                 fontFamily: fonts.Inter_Regular,
@@ -153,7 +157,7 @@ const Home = ({ navigation }) => {
                 </View>
             </ScrollView>
             <BottomBar
-            navigation={navigation}
+                navigation={navigation}
             />
         </SafeAreaView >
     );
