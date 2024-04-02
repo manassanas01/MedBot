@@ -105,7 +105,7 @@ const Home = ({ navigation }) => {
                         justifyContent: 'space-between'
                     }}>
                         <CustomIconButton
-                            onPress={() => { }}
+                            onPress={() => navigation.navigate('Appointments')}
                             iconName="heart-pulse-regular"
                             text="Checkup"
                             backgroundColor={colors.Royal_Blue}
@@ -135,6 +135,9 @@ const Home = ({ navigation }) => {
                             starrating="4.8"
                             reviews="152"
                             onPress={() => navigation.navigate('Schedule')}
+                            style={{
+                                margin: 18
+                            }}
                         />
                     ) : (
                         <>

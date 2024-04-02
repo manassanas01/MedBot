@@ -103,16 +103,15 @@ const TextBox = ({ label, value, placeholder, secureTextEntry, onChangeText, key
     </View>
 )
 
-const Doctorcard = ({ name, category, starrating, reviews, onPress }) => (
+const Doctorcard = ({ name, category, starrating, reviews, onPress, style }) => (
     <TouchableOpacity
         onPress={onPress}
-        style={{
-            margin: 18,
+        style={[{
             padding: 18,
             flexDirection: 'row',
             backgroundColor: colors.lightgrey,
             borderRadius: 50
-        }}>
+        }, style ]}>
         <View>
             <Image
                 style={{
