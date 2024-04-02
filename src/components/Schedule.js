@@ -45,11 +45,9 @@ const Schedule = ({ navigation }) => {
     return (
         <SafeAreaView style={{
 
-            backgroundColor: colors.white,
-            height: '100%',
-            flex: 1, // Make SafeAreaView take up entire screen
+            backgroundColor: colors.white, // Make SafeAreaView take up entire screen
         }}>
-            <ScrollView style={{ height: '100%', flex: 1, padding: 24 }}>
+            <ScrollView contentContainerStyle={{ padding: 24 }}>
                 <View style={{
                     flexDirection: 'row',
                     alignItems: 'center',
@@ -145,6 +143,7 @@ const Schedule = ({ navigation }) => {
                     fontFamily: fonts.Inter_SemiBold,
                     fontSize: 14,
                     marginTop: 28,
+                    marginBottom: 12,
                     color: colors.black
                 }}>Available Timing</Text>
                 <View>
