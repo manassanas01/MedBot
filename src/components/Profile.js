@@ -89,6 +89,7 @@ const Profile = ({ navigation }) => {
             setuser(current_user);
             setname(current_user.displayName);
             setemail(current_user.email);
+            setImageUri(current_user.photoURL);
             setisLoading(false);
             return () => {
                 current_user;
@@ -103,7 +104,6 @@ const Profile = ({ navigation }) => {
             setname(current_user.displayName);
             setemail(current_user.email);
             setImageUri(current_user.photoURL);
-            console.log(current_user.photoURL);
             setisLoading(false);
         }, 1000);
         return () => {

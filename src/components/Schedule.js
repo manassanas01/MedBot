@@ -55,7 +55,7 @@ const Schedule = ({ navigation }) => {
                     alignItems: 'center',
                 }}>
                     <BackButton
-                        navigation={navigation}
+                        onPress={() => navigation.goBack()}
                     />
                     <View style={{ flex: 1, alignItems: 'center' }}>
                         <Text style={{
