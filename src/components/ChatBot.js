@@ -25,14 +25,15 @@ const Msg1 = ({ text }) => (
         borderRadius: 50,
         maxWidth: '95%',
         padding: 24,
-        marginVertical: 12
+        marginVertical: 12,
+        marginRight: 'auto'
     }}>
         <Text style={{
             color: colors.white,
             fontFamily: fonts.Inter_Regular,
             fontSize: 14
         }}>
-            {text}
+            {text.trim()}
         </Text>
     </View>
 )
@@ -51,7 +52,7 @@ const Msg2 = ({ text }) => (
             fontFamily: fonts.Inter_Regular,
             fontSize: 14
         }}>
-            {text}
+            {text.trim()}
         </Text>
     </View>
 )
@@ -59,6 +60,7 @@ const Msg2 = ({ text }) => (
 const ChatBot = ({ navigation }) => {
     const [text, settext] = React.useState();
     const [messages, setMessages] = React.useState([]);
+    const [initialBotMessageSent, setInitialBotMessageSent] = React.useState(false);
     const scrollViewRef = React.useRef();
 
     const sendText = async () => {
@@ -80,9 +82,13 @@ const ChatBot = ({ navigation }) => {
 
     React.useEffect(() => {
         scrollViewRef.current.scrollToEnd({ animated: true });
+        if (!initialBotMessageSent) {
+            setMessages(prevMessages => [...prevMessages, { text: 'Hello there! How can I help you today?', sender: 'bot' }]);
+            setInitialBotMessageSent(true);
+        }
         return () => {
         }
-    }, [messages]);
+    }, [initialBotMessageSent]);
 
     return (
         <SafeAreaView style={{
@@ -93,7 +99,10 @@ const ChatBot = ({ navigation }) => {
                 flexDirection: 'row',
                 alignItems: 'center',
                 paddingHorizontal: 24,
-                paddingVertical: 12
+                paddingVertical: 12,
+                borderBottomLeftRadius: 20,
+                borderBottomRightRadius: 20,
+                zIndex: 4
             }}>
                 <BackButton
                     onPress={() => navigation.goBack()}
@@ -107,7 +116,7 @@ const ChatBot = ({ navigation }) => {
                     }}>Summary</Text>
                 </View>
             </View>
-            <ScrollView ref={scrollViewRef} contentContainerStyle={{ padding: 24 }}>
+            <ScrollView ref={scrollViewRef} contentContainerStyle={{ paddingHorizontal: 24 }}>
                 <View style={{
                     marginTop: 18
                 }}>
