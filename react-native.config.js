@@ -3,7 +3,7 @@ module.exports = {
         ios : {},
         android: {},
     },
-    assets: ['./src/assets/']
+    assets: ['./src/assets/fonts', './src/assets/icon']
 }
 
 //npx react-native-asset

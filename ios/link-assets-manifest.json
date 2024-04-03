@@ -11,23 +11,23 @@
     },
     {
       "path": "src/assets/fonts/icomoon/demo.html",
-      "sha1": "f81fb0447d07ae7cada565829b848717798ad87a"
+      "sha1": "2c9c04ca92d5d8c7b7684e624fc2923b0d10cbff"
     },
     {
       "path": "src/assets/fonts/icomoon/fonts/icomoon.eot",
-      "sha1": "e37378bd3105bddf36b2cfa21a878594dd3a3bf4"
+      "sha1": "71e26a1a4f593adbfdb8eae3d8df4c594c60f7da"
     },
     {
       "path": "src/assets/fonts/icomoon/fonts/icomoon.svg",
-      "sha1": "1a05492f70c8f11fa84290d5ad24a41e7e7cea91"
+      "sha1": "dac55f42ccac440e9a8922643ad70ff954223796"
     },
     {
       "path": "src/assets/fonts/icomoon/fonts/icomoon.ttf",
-      "sha1": "798fcae9a42d43345a94c802efafee33febeae53"
+      "sha1": "2fec8fd702da20055b0cb7c7711f3997b4b32fa3"
     },
     {
       "path": "src/assets/fonts/icomoon/fonts/icomoon.woff",
-      "sha1": "49f564e4ab366b8347e21c78a515678a473d685d"
+      "sha1": "3203174dc1a0b4b9b8443f09ad61473e75db8168"
     },
     {
       "path": "src/assets/fonts/icomoon/Read Me.txt",
@@ -35,11 +35,11 @@
     },
     {
       "path": "src/assets/fonts/icomoon/selection.json",
-      "sha1": "a40024bc947d5c6270b25c4d3fe58440fbc654b0"
+      "sha1": "c192146be10468d8b6e74401c83de9390bd15e55"
     },
     {
       "path": "src/assets/fonts/icomoon/style.css",
-      "sha1": "f3651b9139a58cba316592e9e3230b7f3576316f"
+      "sha1": "11acf102a85edafbce13ffdc86329f2d9abce332"
     },
     {
       "path": "src/assets/fonts/icomoon.zip",
@@ -168,18 +168,6 @@
     {
       "path": "src/assets/icon/icon.png",
       "sha1": "750557609f36f2e3940ec2bc052298487638fd13"
-    },
-    {
-      "path": "src/assets/images/ellipse1.png",
-      "sha1": "de75082cc6e3a9857132f838dc79b9d3691c61dc"
-    },
-    {
-      "path": "src/assets/images/Google-icon/icon_google.png",
-      "sha1": "e8a634bbe9ace242fbc90a70d78bea8168ef7ea7"
-    },
-    {
-      "path": "src/assets/images/group150.png",
-      "sha1": "7f1f89e83a775475202272ac91382f3f00017838"
     }
   ]
 }

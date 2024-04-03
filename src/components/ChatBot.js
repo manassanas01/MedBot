@@ -1,3 +1,5 @@
+import { GoogleGenerativeAI } from '@google/generative-ai';
+import React from 'react';
 import {
     SafeAreaView,
     ScrollView,
@@ -10,6 +12,10 @@ import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import icomoonConfig from '../assets/fonts/icomoon/selection.json';
 import { BackButton } from './base/CustomComponents';
 import { colors, fonts } from './base/theme';
+
+const APIKEY = 'AIzaSyD59hLwhrr2MXYSSUjebhx5VW9uXtR_Qks';
+const genAI = new GoogleGenerativeAI(APIKEY);
+const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 const Icon = createIconSetFromIcoMoon(icomoonConfig);
 
@@ -51,37 +57,67 @@ const Msg2 = ({ text }) => (
 )
 
 const ChatBot = ({ navigation }) => {
+    const [text, settext] = React.useState();
+    const [messages, setMessages] = React.useState([]);
+    const scrollViewRef = React.useRef();
+
+    const sendText = async () => {
+        if (text.trim() === '') return; // Prevent sending Empty response
+
+        // Add user message to the chat
+        setMessages(prevMessages => [...prevMessages, { text: text, sender: 'user' }]);
+
+        const result = await model.generateContent(text);
+        const response = await result.response;
+        const botResponse = response.text();
+        console.log(botResponse);
+
+        // Add chatbot response to the chat
+        setMessages(prevMessages => [...prevMessages, { text: botResponse, sender: 'bot' }]);
+        // Clear input field after sending the message
+        settext('');
+    }
+
+    React.useEffect(() => {
+        scrollViewRef.current.scrollToEnd({ animated: true });
+        return () => {
+        }
+    }, [messages]);
+
     return (
         <SafeAreaView style={{
             backgroundColor: colors.white,
             height: '100%'
         }}>
-            <ScrollView contentContainerStyle={{ padding: 24 }}>
-                <View style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                }}>
-                    <BackButton
-                        onPress={() => navigation.goBack()}
-                    />
-                    <View style={{ flex: 1, alignItems: 'center' }}>
-                        <Text style={{
-                            fontFamily: fonts.Inter_SemiBold,
-                            fontSize: 16,
-                            color: colors.black,
-                            marginRight: '25%'
-                        }}>Summary</Text>
-                    </View>
+            <View style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingHorizontal: 24,
+                paddingVertical: 12
+            }}>
+                <BackButton
+                    onPress={() => navigation.goBack()}
+                />
+                <View style={{ flex: 1, alignItems: 'center' }}>
+                    <Text style={{
+                        fontFamily: fonts.Inter_SemiBold,
+                        fontSize: 16,
+                        color: colors.black,
+                        marginRight: '25%'
+                    }}>Summary</Text>
                 </View>
+            </View>
+            <ScrollView ref={scrollViewRef} contentContainerStyle={{ padding: 24 }}>
                 <View style={{
                     marginTop: 18
                 }}>
-                    <Msg1
-                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id lobortis urna?"
-                    />
-                    <Msg2
-                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id lobortis urna. Nullam eget aliquet enim, a facilisis ex. Donec accumsan hendrerit nisl sit amet efficitur."
-                    />
+                    {messages.map((message, index) => {
+                        return message.sender === 'user' ? (
+                            <Msg2 key={index} text={message.text} />
+                        ) : (
+                            <Msg1 key={index} text={message.text} />
+                        );
+                    })}
                 </View>
             </ScrollView>
             <View style={{
@@ -106,7 +142,8 @@ const ChatBot = ({ navigation }) => {
                     }}
                     placeholder="Type here ..."
                     placeholderTextColor={colors.black}
-                    onChangeText={() => { }}
+                    value={text}
+                    onChangeText={(text) => settext(text)}
                 />
                 <TouchableOpacity
                     style={{
@@ -119,7 +156,10 @@ const ChatBot = ({ navigation }) => {
                         justifyContent: 'center',
                         alignItems: 'center'
                     }}
-                    onPress={() => { }}>
+                    onPress={() => {
+                        sendText()
+                        settext(null)
+                    }}>
                     <Icon
                         name="paper-plane-regular"
                         size={20}
