@@ -81,14 +81,14 @@ const ChatBot = ({ navigation }) => {
     }
 
     React.useEffect(() => {
-        scrollViewRef.current.scrollToEnd({ animated: true });
         if (!initialBotMessageSent) {
             setMessages(prevMessages => [...prevMessages, { text: 'Hello there! How can I help you today?', sender: 'bot' }]);
             setInitialBotMessageSent(true);
         }
+        scrollViewRef.current.scrollToEnd({ animated: true });
         return () => {
         }
-    }, [initialBotMessageSent]);
+    }, [initialBotMessageSent, messages]);
 
     return (
         <SafeAreaView style={{
