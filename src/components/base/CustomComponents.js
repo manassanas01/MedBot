@@ -103,7 +103,7 @@ const TextBox = ({ label, value, placeholder, secureTextEntry, onChangeText, key
     </View>
 )
 
-const Doctorcard = ({ name, category, starrating, reviews, onPress, style }) => (
+const Doctorcard = ({ imageURL, name, category, starrating, reviews, onPress, style }) => (
     <TouchableOpacity
         onPress={onPress}
         style={[{
@@ -122,7 +122,7 @@ const Doctorcard = ({ name, category, starrating, reviews, onPress, style }) => 
                     alignSelf: 'center',
                     backgroundColor: colors.white
                 }}
-                source={require('../../assets/images/image5.png')}
+                source={{uri: imageURL}}
             />
         </View>
         <View style={{

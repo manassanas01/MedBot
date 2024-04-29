@@ -11,6 +11,7 @@ import RemotePushController from './services/RemotePushController';
 
 import Appointments from './Appointments';
 import ChatBot from './ChatBot';
+import ChatBot2 from './ChatBot2';
 import GetStarted from './GetStarted';
 import Home from './Home';
 import Login from './Login';
@@ -90,6 +91,10 @@ const App = () => {
                             <Stack.Screen
                                 name="ChatBox"
                                 component={ChatBot}
+                            />
+                            <Stack.Screen
+                                name="ChatBox2"
+                                component={ChatBot2}
                             />
                             <Stack.Screen
                                 name="Appointments"

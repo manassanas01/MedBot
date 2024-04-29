@@ -1,3 +1,5 @@
+import auth from '@react-native-firebase/auth';
+import React from 'react';
 import {
     SafeAreaView,
     ScrollView,
@@ -9,11 +11,67 @@ import {
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import icomoonConfig from '../assets/fonts/icomoon/selection.json';
 import { BackButton, Doctorcard } from './base/CustomComponents';
-import { colors, fonts } from './base/theme';
+import { apiurl, colors, fonts } from './base/theme';
 
 const Icon = createIconSetFromIcoMoon(icomoonConfig);
 
 const Appointments = ({ navigation }) => {
+    const [data, setdata] = React.useState();
+
+    const fch = (current_user) => {
+        const body = JSON.stringify({
+            "structuredQuery": {
+                "select": {
+                    "fields": [
+                        {
+                            "fieldPath": "category"
+                        },
+                        {
+                            "fieldPath": "imageURL"
+                        },
+                        {
+                            "fieldPath": "loation"
+                        },
+                        {
+                            "fieldPath": "name"
+                        },
+                        {
+                            "fieldPath": "no_review"
+                        },
+                        {
+                            "fieldPath": "star"
+                        }
+                    ]
+                },
+                "from": [
+                    {
+                        "collectionId": "doctors"
+                    }
+                ]
+            }
+        })
+        fetch(apiurl + ":runQuery", {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + current_user
+            },
+            body: body
+        })
+            .then((response) => response.json())
+            .then((response) => {
+                setdata(response);
+            })
+            .catch((error) => console.error(error))
+    }
+
+    React.useEffect(() => {
+        auth().currentUser.getIdToken().then((uid) => {
+            fch(uid);
+        })
+    }, [])
+
     return (
         <SafeAreaView style={{
             backgroundColor: colors.white,
@@ -48,14 +106,14 @@ const Appointments = ({ navigation }) => {
                     borderBottomWidth: 0.8,
                     borderColor: colors.black
                 }}>
-                        <Icon
-                            name="magnifying-glass-solid"
-                            size={20}
-                            color={colors.black}
-                            style={{
-                                marginHorizontal: 4
-                            }}
-                        />
+                    <Icon
+                        name="magnifying-glass-solid"
+                        size={20}
+                        color={colors.black}
+                        style={{
+                            marginHorizontal: 4
+                        }}
+                    />
                     <TextInput
                         style={{
                             fontFamily: fonts.Inter_Regular,
@@ -92,23 +150,22 @@ const Appointments = ({ navigation }) => {
                 <View style={{
                     marginTop: 18
                 }}>
-                    <Doctorcard
-                        name="Dr. Sebastian Koch"
-                        category="Neurologist"
-                        starrating="4.8"
-                        reviews="152"
-                        onPress={() => navigation.navigate('Schedule')}
-                        style={{
-                            marginVertical: 18
-                        }}
-                    />
-                    <Doctorcard
-                        name="Dr. Jessica Lee"
-                        category="Cardiologist"
-                        starrating="4.8"
-                        reviews="152"
-                        onPress={() => navigation.navigate('Schedule')}
-                    />
+                    {
+                        data ? (data.map((x, index) => (
+                            <Doctorcard
+                                imageURL={x.document.fields.imageURL.stringValue}
+                                name={x.document.fields.name.stringValue}
+                                category={x.document.fields.category.stringValue}
+                                starrating={x.document.fields.star.stringValue}
+                                reviews={x.document.fields.no_review.stringValue}
+                                onPress={() => navigation.navigate('Schedule', { idURL: x.document.name })}
+                                style={{
+                                    marginVertical: 18
+                                }}
+                                key={index}
+                            />
+                        ))) : null
+                    }
                 </View>
             </ScrollView>
         </SafeAreaView>

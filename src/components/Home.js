@@ -7,28 +7,79 @@ import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import tw from 'tailwind-react-native-classnames';
 import icomoonConfig from '../assets/fonts/icomoon/selection.json';
 import { BottomBar, CustomIconButton, Doctorcard } from './base/CustomComponents';
-import { colors, fonts } from './base/theme';
+import { apiurl, colors, fonts } from './base/theme';
 
 const Icon = createIconSetFromIcoMoon(icomoonConfig);
 
 const Home = ({ navigation }) => {
     const [isRefreshing, setIsRefreshing] = useState(false)
+    const [isLoading, setisLoading] = useState(true)
     const [name, setname] = React.useState('Joe')
-    const [data, setdata] = useState("dw")
+    const [data, setdata] = useState(null)
     const [imageUri, setImageUri] = React.useState(null);
+
+    const fch = (current_user) => {
+        const body = JSON.stringify({
+            "structuredQuery": {
+                "select": {
+                    "fields": [
+                        {
+                            "fieldPath": "category"
+                        },
+                        {
+                            "fieldPath": "imageURL"
+                        },
+                        {
+                            "fieldPath": "loation"
+                        },
+                        {
+                            "fieldPath": "name"
+                        },
+                        {
+                            "fieldPath": "no_review"
+                        },
+                        {
+                            "fieldPath": "star"
+                        }
+                    ]
+                },
+                "from": [
+                    {
+                        "collectionId": "doctors"
+                    }
+                ],
+                "limit": 2
+            }
+        })
+        fetch(apiurl + ":runQuery", {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + current_user
+            },
+            body: body
+        })
+            .then((response) => response.json())
+            .then((response) => {
+                setdata(response);
+                console.log(response)
+            })
+            .catch((error) => console.error(error))
+            .finally(() => setisLoading(false))
+    }
+
+    React.useEffect(() => {
+        const current_user = auth().currentUser;
+        setname(current_user.displayName);
+        setImageUri(current_user.photoURL);
+        auth().currentUser.getIdToken().then((uid) => {
+            fch(uid);
+        })
+    }, [])
 
     const onRefresh = () => { };
 
-    React.useEffect(
-        React.useCallback(() => {
-            const current_user = auth().currentUser;
-            setname(current_user.displayName);
-            setImageUri(current_user.photoURL);
-            return () => {
-                current_user;
-            }
-        }, [])
-    );
 
     return (
         <SafeAreaView style={[{ backgroundColor: colors.white }, tw`h-full`]}>
@@ -128,18 +179,20 @@ const Home = ({ navigation }) => {
                         marginLeft: 28,
                         marginTop: 28
                     }}>Recent</Text>
-                    {data ? (
+                    { data ? (data.map((x, index) => (
                         <Doctorcard
-                            name="Dr. Sebastian Koch"
-                            category="Neurologist"
-                            starrating="4.8"
-                            reviews="152"
-                            onPress={() => navigation.navigate('Schedule')}
+                            key={index}
+                            imageURL={x.document.fields.imageURL.stringValue}
+                            name={x?.document?.fields?.name.stringValue}
+                            category={x?.document?.fields?.category.stringValue}
+                            starrating={x?.document?.fields?.star.stringValue}
+                            reviews={x?.document?.fields?.no_review.stringValue}
+                            onPress={() => navigation.navigate('Schedule', { idURL: x?.document?.name })}
                             style={{
                                 margin: 18
                             }}
                         />
-                    ) : (
+                    ))) : (
                         <>
                             <Image
                                 style={{

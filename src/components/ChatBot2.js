@@ -57,10 +57,11 @@ const Msg2 = ({ text }) => (
     </View>
 )
 
-const ChatBot = ({ navigation }) => {
+const ChatBot2 = ({ navigation }) => {
     const [text, settext] = React.useState();
     const [messages, setMessages] = React.useState([]);
     const [initialBotMessageSent, setInitialBotMessageSent] = React.useState(false);
+    const [initialBotseq, setInitialBotseq] = React.useState(0);
     const scrollViewRef = React.useRef();
 
     const sendText = async () => {
@@ -69,21 +70,42 @@ const ChatBot = ({ navigation }) => {
         // Add user message to the chat
         setMessages(prevMessages => [...prevMessages, { text: text, sender: 'user' }]);
 
+        if (initialBotseq == 1) {
+            if (text == 'Yes' || text == 'yes' || text == 'YES') {
+                setMessages(prevMessages => [...prevMessages, { text: "Welcome! What brings you here today? Please let us know if you're experiencing any symptoms such as fever, chest pain, or headache.", sender: 'bot' }]);
+                setInitialBotseq(2);
+            }
+        } else if (initialBotseq == 2) {
+            setMessages(prevMessages => [...prevMessages, { text: "Could you kindly provide us with your past medical history? Also, do you have any family members with a history of medical ailments?", sender: 'bot' }]);
+            setInitialBotseq(3);
+        } else if (initialBotseq == 3) {
+            setMessages(prevMessages => [...prevMessages, { text: "Could you please share your personal history regarding sleep patterns, smoking habits, and alcohol consumption?", sender: 'bot' }]);
+            setInitialBotseq(4);
+        } else if (initialBotseq == 4) {
+            setMessages(prevMessages => [...prevMessages, { text: "Thank you for providing your answers. Your responses will be shared with the doctor you've scheduled your appointment with to streamline your consultation process.", sender: 'bot' }]);
+            setInitialBotseq(5);
+        }
+
+        /*
         const result = await model.generateContent(text);
         const response = await result.response;
         const botResponse = response.text();
         console.log(botResponse);
 
         // Add chatbot response to the chat
-        setMessages(prevMessages => [...prevMessages, { text: botResponse, sender: 'bot' }]);
+        setMessages(prevMessages => [...prevMessages, { text: botResponse, sender: 'bot' }]);*/
+
+
+
         // Clear input field after sending the message
         settext('');
     }
 
     React.useEffect(() => {
         if (!initialBotMessageSent) {
-            setMessages(prevMessages => [...prevMessages, { text: 'Hello there! How can I help you today?', sender: 'bot' }]);
+            setMessages(prevMessages => [...prevMessages, { text: "We've successfully booked your appointment for the selected time slot. Before we proceed, could you please answer a few questions? When you're ready, simply respond with 'Yes'.", sender: 'bot' }]);
             setInitialBotMessageSent(true);
+            setInitialBotseq(1);
         }
         scrollViewRef.current.scrollToEnd({ animated: true });
         return () => {
@@ -180,4 +202,4 @@ const ChatBot = ({ navigation }) => {
     )
 }
 
-export default ChatBot;
+export default ChatBot2;

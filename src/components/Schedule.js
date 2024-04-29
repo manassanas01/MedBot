@@ -1,4 +1,5 @@
-import React from "react";
+import auth from '@react-native-firebase/auth';
+import React from 'react';
 import {
     Image,
     SafeAreaView,
@@ -11,7 +12,7 @@ import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import icomoonConfig from '../assets/fonts/icomoon/selection.json';
 
 import { BackButton } from "./base/CustomComponents";
-import { colors, fonts } from "./base/theme";
+import { apiurl, colors, fonts, url } from "./base/theme";
 
 const Icon = createIconSetFromIcoMoon(icomoonConfig);
 
@@ -41,7 +42,49 @@ const Slot = ({ date, slot1, slot2, onPress }) => (
     </TouchableOpacity>
 )
 
-const Schedule = ({ navigation }) => {
+const Schedule = ({ navigation, route }) => {
+    const [data, setdata] = React.useState();
+    const [timeslots, settimeslot] = React.useState();
+
+    const fchslot = (current_user) => {
+        fetch(apiurl + '/slot_timings', {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + current_user
+            }
+        })
+            .then((response) => response.json())
+            .then((response) => {
+                settimeslot(response.documents);
+            })
+            .catch((error) => console.error(error))
+    }
+
+    const fch = (current_user) => {
+        fetch(url + route.params.idURL, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + current_user
+            }
+        })
+            .then((response) => response.json())
+            .then((response) => {
+                setdata(response);
+            })
+            .catch((error) => console.error(error))
+    }
+
+    React.useEffect(() => {
+        auth().currentUser.getIdToken().then((uid) => {
+            fch(uid);
+            fchslot(uid);
+        })
+    }, [])
+
     return (
         <SafeAreaView style={{
 
@@ -85,7 +128,7 @@ const Schedule = ({ navigation }) => {
                                 alignSelf: 'center',
                                 backgroundColor: colors.white
                             }}
-                            source={require('../assets/images/image5.png')}
+                            source={{ uri: data?.fields?.imageURL?.stringValue }}
                         />
                         <View style={{
                             marginLeft: 16
@@ -94,12 +137,12 @@ const Schedule = ({ navigation }) => {
                                 fontFamily: fonts.Inter_SemiBold,
                                 fontSize: 16,
                                 color: colors.black
-                            }}>Dr. Sebastian Koch</Text>
+                            }}>{data?.fields?.name?.stringValue}</Text>
                             <Text style={{
                                 fontFamily: fonts.Inter_Regular,
                                 fontSize: 12,
                                 color: '#757575'
-                            }}>Neurologist</Text>
+                            }}>{data?.fields?.category?.stringValue}</Text>
                             <View style={{
                                 flexDirection: 'row',
                                 alignItems: 'center'
@@ -109,7 +152,7 @@ const Schedule = ({ navigation }) => {
                                     fontSize: 16,
                                     marginTop: 6,
                                     color: colors.black
-                                }}>4.5</Text>
+                                }}>{data?.fields?.star?.stringValue}</Text>
                                 <Icon
                                     name="star-solid"
                                     size={10}
@@ -125,10 +168,9 @@ const Schedule = ({ navigation }) => {
                                     fontSize: 16,
                                     marginTop: 6,
                                     color: colors.black
-                                }}>(152)</Text>
+                                }}>({data?.fields?.no_review?.stringValue})</Text>
                             </View>
                         </View>
-
                     </View>
                     <Text style={{
                         fontFamily: fonts.Inter_Regular,
@@ -136,7 +178,7 @@ const Schedule = ({ navigation }) => {
                         color: colors.black,
                         marginVertical: 18
                     }}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mollis at ligula nec tincidunt. Duis luctus neque in tellus rutrum ultrices. Aenean finibus, ipsum id varius bibendum, tortor nibh lobortis ipsum, in eleifend diam quam non ligula. Praesent sit amet porta nisl.
+                        {data?.fields?.desc?.stringValue}
                     </Text>
                 </View>
                 <Text style={{
@@ -147,22 +189,17 @@ const Schedule = ({ navigation }) => {
                     color: colors.black
                 }}>Available Timing</Text>
                 <View>
-                    <Slot
-                        date="Mon, Feb 6"
-                        slot1="09:30 AM"
-                        slot2="12:30 PM"
-                        onPress={() => navigation.navigate('Summary')}
-                    />
-                    <Slot
-                        date="Mon, Feb 6"
-                        slot1="09:30 AM"
-                        slot2="12:30 PM"
-                    />
-                    <Slot
-                        date="Mon, Feb 6"
-                        slot1="09:30 AM"
-                        slot2="12:30 PM"
-                    />
+                    {
+                        timeslots?.map((x, index) => (
+                            <Slot
+                                key={index}
+                                date={x.fields.day.stringValue + ", " + x.fields.date.stringValue}
+                                slot1={x.fields.timefrom.stringValue}
+                                slot2={x.fields.timeto.stringValue}
+                                onPress={() => navigation.navigate('ChatBox2', { docidURL: route.params.idURL })}
+                            />
+                        ))
+                    }
                 </View>
             </ScrollView>
         </SafeAreaView>

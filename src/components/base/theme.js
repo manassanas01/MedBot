@@ -29,7 +29,7 @@ const fonts = {
 }
 
 const url = 'https://firestore.googleapis.com/v1/'
-const apiurl = url + 'projects/notes-38479/databases/(default)/documents'
+const apiurl = url + 'projects/medbot-98533/databases/(default)/documents'
 
 export {
     apiurl, colors,
