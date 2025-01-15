@@ -1,0 +1,31 @@
+initial commit -> Create the React Native Application
+0.0.1 -> Laid foundation and navigation structure of the React Native App as well as Linked it to Firebase Project. Create Push Notiication Channels.
+0.0.2 -> Created and designed the Get Started Page
+0.0.3 -> Created the Sign In Page
+0.0.4 -> Solver a Navigation Error. Removed The Drawer Navigation and pointed the default navigation to Home.
+0.0.5 -> Added the keystore file for android
+0.0.6 -> Created and Designed the Home Page and Create Profile page
+0.0.7 -> Restructured the Buttons and Optimized the code.
+0.0.8 -> Created card for the for the doctors
+0.0.9 -> Adding navigation prop to BottomBar
+0.1.0 -> Re-designed Profile Page
+0.1.1 ->  Created a custom Component for Back Button to optimize the code
+0.1.2 -> Created a custom component for Text Box to optimize the code
+0.1.3 -> Added Schedule Page
+0.1.4 -> Assembled initial Released version for Android
+0.1.5 -> Added the profile picture feature
+0.1.6 -> Solved the back button issue and made some design changes for the same
+0.1.7 -> Reduced the buttons on Get Started
+0.1.8 -> Fixed the ScrollView issue for Schedule Page
+0.1.9 -> Added the ImageUri to useFocusEffect
+0.1.10 -> Designed the Summary Page
+0.1.11 -> Fixed some design bugs in Schedule Page
+0.1.12 -> Designed the ChatBox Page
+0.1.13 -> Designed the Appointment Page
+0.1.14 -> Designed the Section Page
+0.1.15 -> Fixed the `DEVELOPER_ERROR` bug on Google Sign In by replacing the webClientId
+0.1.16 ->  Assembled Released version for Android
+0.1.17 -> Added the ChatBot logic and added the icon for paper-plane (Replace the icon fonts with new file)
+0.1.18 -> Added the SOS button
+
+AIzaSyD59hLwhrr2MXYSSUjebhx5VW9uXtR_Qks
