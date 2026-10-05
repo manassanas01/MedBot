@@ -1,79 +1,68 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# MedBot
 
-# Getting Started
+A healthcare-focused mobile application prototype built with **React Native**.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+MedBot is an experimental project exploring the development of a mobile healthcare application and the underlying application-development workflow.
 
-## Step 1: Start the Metro Server
+> **Disclaimer:** MedBot is a prototype/portfolio project and is not intended to provide medical diagnosis, treatment, or professional medical advice.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## 🚀 Overview
 
-To start Metro, run the following command from the _root_ of your React Native project:
+MedBot is being developed as a mobile application concept for healthcare-related interactions.
 
-```bash
-# using npm
-npm start
+The project provides a foundation for building a healthcare application using React Native and can be extended with backend services, AI capabilities, authentication, and other healthcare-focused features.
 
-# OR using Yarn
-yarn start
-```
+## 🛠️ Tech Stack
 
-## Step 2: Start your Application
+* **React Native**
+* **TypeScript**
+* **Android**
+* **Node.js / npm**
+* **React Native CLI**
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+## 📱 Current Status
 
-### For Android
+This project is currently a **work in progress**.
 
-```bash
-# using npm
-npm run android
+The repository currently focuses on the React Native application foundation and is intended to serve as an ongoing application-development project.
 
-# OR using Yarn
-yarn android
-```
+## 🎯 Project Goals
 
-### For iOS
+The primary goals of MedBot are to:
 
-```bash
-# using npm
-npm run ios
+* Explore mobile application development with React Native
+* Build a healthcare-focused application prototype
+* Experiment with application architecture and user experience
+* Provide a foundation for future AI and backend integrations
+* Demonstrate practical software development skills
 
-# OR using Yarn
-yarn ios
-```
+## 🔮 Potential Future Improvements
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+Possible future development includes:
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+* Healthcare assistant/chat functionality
+* Backend API integration
+* User authentication
+* Database integration
+* AI/LLM integration
+* Healthcare information retrieval
+* User profiles and history
+* Improved UI/UX
 
-## Step 3: Modifying your App
+## 🔐 Security
 
-Now that you have successfully run the app, let's modify it.
+No production credentials, API keys, private keys, or Android signing keystores are included in this repository.
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+Sensitive configuration should be provided through environment variables or local configuration files and should **never be committed to Git**.
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+## ⚠️ Disclaimer
 
-## Congratulations! :tada:
+MedBot is an educational and portfolio project.
 
-You've successfully run and modified your React Native App. :partying_face:
+The application does not replace qualified medical professionals and should not be used for medical diagnosis, treatment decisions, or emergency situations.
 
-### Now what?
+Any future AI functionality should be treated as informational and should not be considered a substitute for professional medical advice.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+## 📄 License
 
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+This project is available for educational and portfolio purposes.
